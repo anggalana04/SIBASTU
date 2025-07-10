@@ -22,11 +22,22 @@ class MahasiswaController extends Controller
     {
         $validated = $request->validate([
             'Nama_Mahasiswa' => 'required|string|max:50',
+            'Id_Universitas' => 'nullable|string|max:50',
             'Jurusan' => 'required|string|max:50',
+            'Fakultas' => 'nullable|string|max:50',
             'Semester' => 'nullable|integer',
-            'Alamat' => 'nullable|string|max:30',
-            'No_hp' => 'nullable|string|max:15',
+            'Alamat' => 'nullable|string|max:100',
+            'No_hp' => 'nullable|string|max:20',
+            'Laporan_Aktifkuliah' => 'nullable|string|max:100',
+            'Laporan_Kpm' => 'nullable|string|max:100',
+            'Laporan_Ktp' => 'nullable|string|max:100',
+            'Laporan_Dns' => 'nullable|string|max:100',
+            'Laporan_Kk' => 'nullable|string|max:100',
+            'Laporan_KartuKeluarga' => 'nullable|string|max:100',
+            'Laporan_Rekomendasi' => 'nullable|string|max:100',
         ]);
+
+        
         Mahasiswa::create($validated);
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa created successfully.');
     }

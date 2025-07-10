@@ -10,14 +10,12 @@ class ForumDiskusiController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $forums = ForumDiskusi::where('Nama_Mahasiswa', $user->mahasiswa->Nama_Mahasiswa ?? '')->get();
-        return view('mahasiswa.forum-diskusi.index', compact('forums'));
+        return view('forum-diskusi.index');
     }
 
     public function create()
     {
-        return view('mahasiswa.forum-diskusi.create');
+        return view('forum-diskusi.create');
     }
 
     public function store(Request $request)
@@ -34,8 +32,8 @@ class ForumDiskusiController extends Controller
 
     public function show($id)
     {
-        $forum = ForumDiskusi::findOrFail($id);
-        return view('mahasiswa.forum-diskusi.show', compact('forum'));
+
+        return view('forum-diskusi.show');
     }
 
     public function destroy($id)

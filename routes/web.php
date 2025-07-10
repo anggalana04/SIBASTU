@@ -27,7 +27,9 @@ Route::middleware('auth')->group(function () {
         Route::view('/pendaftaran', 'mahasiswa.pendaftaran')->name('mahasiswa.pendaftaran');
         Route::view('/upload-berkas', 'mahasiswa.upload-berkas')->name('mahasiswa.upload-berkas');
         Route::view('/informasi-pemberian', 'mahasiswa.informasi-pemberian')->name('mahasiswa.informasi-pemberian');
-        Route::view('/forum-diskusi', 'mahasiswa.forum-diskusi')->name('mahasiswa.forum-diskusi');
+        Route::view('/forum-diskusi', 'forum-diskusi.index')->name('mahasiswa.forum-diskusi');
+        Route::view('/forum-diskusi/create', 'forum-diskusi.create')->name('mahasiswa.forum-diskusi.create');
+        Route::view('/forum-diskusi/show', 'forum-diskusi.show')->name('mahasiswa.forum-diskusi.show');
     });
 
     // Mahasiswa CRUD
