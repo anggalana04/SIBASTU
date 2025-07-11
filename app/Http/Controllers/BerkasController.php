@@ -53,8 +53,16 @@ class BerkasController extends Controller
                 $data[$fileField] = $request->file($fileField)->store('berkas', 'public');
             }
         }
-        Berkas::create($data);
-        return redirect()->route('berkas.index')->with('success', 'Berkas uploaded successfully.');
+        $berkas = Berkas::create($data);
+        // Create Validasi automatically
+        $idTim = $user->Id_Tim ?? (\App\Models\TimLannyJayaCerdas::first()->Id_Tim ?? 'TLJ_001');
+        \App\Models\Validasi::create([
+            'Id_Berkas' => $berkas->Id_Berkas,
+            'Id_Mahasiswa' => $user->Id_Mahasiswa,
+            'Id_Tim' => $idTim,
+            'Status_Berkas' => 'menunggu_verifikasi',
+        ]);
+        return redirect()->route('mahasiswa.upload-berkas')->with('success', 'Berkas uploaded successfully.');
     }
 
     public function show($id)

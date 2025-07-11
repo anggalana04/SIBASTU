@@ -24,10 +24,10 @@ Route::middleware('auth')->group(function () {
     // Mahasiswa routes
     Route::prefix('mahasiswa')->group(function () {
         Route::view('/dashboard', 'mahasiswa.dashboard')->name('mahasiswa.dashboard');
-        Route::view('/pendaftaran', 'mahasiswa.pendaftaran')->name('mahasiswa.pendaftaran');
+        Route::get('/pendaftaran', [MahasiswaController::class, 'create'])->name('mahasiswa.pendaftaran');
         Route::view('/upload-berkas', 'mahasiswa.upload-berkas')->name('mahasiswa.upload-berkas');
         Route::view('/informasi-pemberian', 'mahasiswa.informasi-pemberian')->name('mahasiswa.informasi-pemberian');
-        Route::view('/forum-diskusi', 'forum-diskusi.index')->name('mahasiswa.forum-diskusi');
+        Route::get('/forum-diskusi', [ForumDiskusiController::class, 'index'])->name('mahasiswa.forum-diskusi');
         Route::view('/forum-diskusi/create', 'forum-diskusi.create')->name('mahasiswa.forum-diskusi.create');
         Route::view('/forum-diskusi/show', 'forum-diskusi.show')->name('mahasiswa.forum-diskusi.show');
     });
@@ -53,23 +53,28 @@ Route::middleware('auth')->group(function () {
     Route::prefix('tim')->group(function () {
         Route::view('/dashboard', 'tim.dashboard')->name('tim.dashboard');
         Route::view('/bantuan-studi', 'tim.bantuan-studi')->name('tim.bantuan-studi');
-        Route::view('/data-mahasiswa', 'tim.data-mahasiswa')->name('tim.data-mahasiswa');
-        Route::view('/data-korwil', 'tim.data-korwil')->name('tim.data-korwil');
-        Route::view('/validasi-berkas', 'tim.validasi-berkas')->name('tim.validasi-berkas');
+        Route::get('/data-mahasiswa', [\App\Http\Controllers\MahasiswaController::class, 'index'])->name('tim.data-mahasiswa');
+
+        // Korwil management for tim
+        Route::get('/data-korwil', [\App\Http\Controllers\KorwilController::class, 'index'])->name('tim.data-korwil');
+        Route::get('/data-korwil/create', [\App\Http\Controllers\KorwilController::class, 'create'])->name('korwil.create');
+        Route::post('/data-korwil', [\App\Http\Controllers\KorwilController::class, 'store'])->name('korwil.store');
+        Route::get('/data-korwil/{id}', [\App\Http\Controllers\KorwilController::class, 'show'])->name('korwil.show');
+        Route::get('/data-korwil/{id}/edit', [\App\Http\Controllers\KorwilController::class, 'edit'])->name('korwil.edit');
+        Route::put('/data-korwil/{id}', [\App\Http\Controllers\KorwilController::class, 'update'])->name('korwil.update');
+        Route::delete('/data-korwil/{id}', [\App\Http\Controllers\KorwilController::class, 'destroy'])->name('korwil.destroy');
+
+        // Validasi Berkas for tim
+        Route::get('/validasi-berkas', [\App\Http\Controllers\ValidasiController::class, 'index'])->name('validasi.index');
+        Route::get('/validasi-berkas/{id}/edit', [\App\Http\Controllers\ValidasiController::class, 'edit'])->name('validasi.edit');
+        Route::put('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'update'])->name('validasi.update');
+        Route::get('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'show'])->name('validasi.show');
+
         Route::view('/informasi-pemberian', 'tim.informasi-pemberian')->name('tim.informasi-pemberian');
         Route::view('/forum-diskusi', 'tim.forum-diskusi')->name('tim.forum-diskusi');
     });
 
-    // Validasi CRUD for Tim
-    Route::resource('validasi', ValidasiController::class);
-
-    // Dinas routes
-    Route::prefix('dinas')->group(function () {
-        Route::view('/dashboard', 'dinas.dashboard')->name('dinas.dashboard');
-        Route::view('/laporan', 'dinas.laporan')->name('dinas.laporan');
-        Route::view('/laporan/pendaftaran', 'dinas.laporan-pendaftaran')->name('dinas.laporan.pendaftaran');
-        Route::view('/laporan/pemberian', 'dinas.laporan-pemberian')->name('dinas.laporan.pemberian');
-    });
+    Route::post('forum-diskusi/{id}/respon', [ForumDiskusiController::class, 'addRespon'])->name('forum-diskusi.addRespon');
 });
 
 require __DIR__ . '/auth.php';

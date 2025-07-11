@@ -1,0 +1,349 @@
+/* Minimalist modern style for berkas index table */
+.berkas-index-container {
+    width: 80vw;
+    min-height: 100vh;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.berkas-index-content {
+    width: 100%;
+    max-width: 950px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
+    padding: 2.2rem 2rem 1.5rem 2rem;
+    margin: 2.5rem 0;
+}
+
+.berkas-index-content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1.2rem;
+}
+
+.berkas-index-content .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.berkas-index-content .btn-primary {
+    background: #2563eb;
+    color: #fff;
+    margin-bottom: 1.2rem;
+}
+
+.berkas-index-content .btn-primary:hover {
+    background: #1746a2;
+}
+
+.berkas-index-content .btn-danger {
+    background: #ef4444;
+    color: #fff;
+}
+
+.berkas-index-content .btn-danger:hover {
+    background: #b91c1c;
+}
+
+.berkas-index-content .btn-secondary {
+    background: #e2e8f0;
+    color: #222;
+}
+
+.berkas-index-content .btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+.berkas-index-content .alert-success {
+    background: #e0f7e9;
+    color: #15803d;
+    border-radius: 6px;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+}
+
+.berkas-index-content table {
+    width: 100%;
+    border-collapse: collapse;
+    background: none;
+    margin-bottom: 0;
+}
+
+.berkas-index-content th,
+.berkas-index-content td {
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.berkas-index-content th {
+    background: #f1f5f9;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.berkas-index-content tr:last-child td {
+    border-bottom: none;
+}
+
+.berkas-index-content a {
+    color: #2563eb;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Modern minimalist style for validasi berkas */
+.validasi-berkas-container {
+    max-width: 600px;
+    margin: 2.5rem auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+
+.validasi-berkas-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+}
+
+.validasi-berkas-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2563eb;
+}
+
+.form-control,
+.form-control-static,
+.form-group input,
+.form-group select {
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+    font-size: 1.05rem;
+    background: #f8fafc;
+}
+
+.validasi-berkas-actions {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: flex-end;
+    margin-top: 1.2rem;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #1746a2;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.validasi-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+.data-mahasiswa-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 2.5rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.data-mahasiswa-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(37, 99, 235, 0.07);
+    overflow: hidden;
+}
+
+.data-mahasiswa-table th,
+.data-mahasiswa-table td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-mahasiswa-table th {
+    background: #f1f5f9;
+    color: #2563eb;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.data-mahasiswa-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-mahasiswa-table tr.clickable-row {
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.data-mahasiswa-table tr.clickable-row:hover {
+    background: #f3f4f6;
+}
+
+.btn.btn-info.btn-sm {
+    background: #2563eb;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.97rem;
+    font-weight: 600;
+    border: none;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn.btn-info.btn-sm:hover {
+    background: #1746a2;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35em 1em;
+    border-radius: 999px;
+    font-size: 0.97rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.1px;
+}
+
+.status-menunggu\ verifikasi {
+    background: #fbbf24;
+    color: #fff;
+}
+
+.status-terverifikasi {
+    background: #22c55e;
+    color: #fff;
+}
+
+.status-ditolak {
+    background: #ef4444;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .berkas-index-content {
+        padding: 1.2rem 0.5rem;
+    }
+
+    .berkas-index-content table,
+    .berkas-index-content th,
+    .berkas-index-content td {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .berkas-index-content {
+        padding: 0.5rem 0.1rem;
+    }
+
+    .berkas-index-content table,
+    .berkas-index-content th,
+    .berkas-index-content td {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .validasi-berkas-container {
+        padding: 1.2rem 0.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+
+    .data-mahasiswa-table th,
+    .data-mahasiswa-table td {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.97rem;
+    }
+
+    .validasi-title {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+        margin-left: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .data-mahasiswa-table-wrapper {
+        padding: 0 0.5rem 1rem 0.5rem;
+    }
+}

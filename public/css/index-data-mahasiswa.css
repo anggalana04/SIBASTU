@@ -1,0 +1,134 @@
+/* Minimalist modern style for data mahasiswa management */
+.data-mahasiswa-container {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+
+.data-mahasiswa-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.data-mahasiswa-header h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.data-mahasiswa-header .btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.7rem 1.7rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.data-mahasiswa-header .btn-primary:hover {
+    background: #1746a2;
+}
+
+.data-mahasiswa-table-wrapper {
+    overflow-x: auto;
+}
+
+.data-mahasiswa-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(37, 99, 235, 0.04);
+}
+
+.data-mahasiswa-table th,
+.data-mahasiswa-table td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+}
+
+.data-mahasiswa-table th {
+    background: #f1f5f9;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-bottom: 2px solid #e0e7ef;
+}
+
+.data-mahasiswa-table td {
+    font-size: 1.03rem;
+    color: #222;
+    border-bottom: 1px solid #e0e7ef;
+}
+
+.data-mahasiswa-table tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-info,
+.btn-warning,
+.btn-danger {
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.98rem;
+    font-weight: 500;
+    margin-right: 0.3rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-info {
+    background: #38bdf8;
+    color: #fff;
+}
+
+.btn-warning {
+    background: #facc15;
+    color: #222;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background: #0ea5e9;
+}
+
+.btn-warning:hover {
+    background: #eab308;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+@media (max-width: 700px) {
+    .data-mahasiswa-container {
+        padding: 1.2rem 0.5rem;
+    }
+
+    .data-mahasiswa-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .data-mahasiswa-table th,
+    .data-mahasiswa-table td {
+        padding: 0.7rem 0.5rem;
+    }
+}

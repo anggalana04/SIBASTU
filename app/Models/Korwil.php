@@ -12,7 +12,9 @@ class Korwil extends Model
     public $timestamps = false;
     protected $fillable = [
         'Id_Korwil',
-        'Nama_Korwil'
+        'Nama_Korwil',
+        'Nama_Kota'
+
     ];
 
     public function responDiskusi()

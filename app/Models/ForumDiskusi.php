@@ -12,14 +12,34 @@ class ForumDiskusi extends Model
     public $timestamps = false;
     protected $fillable = [
         'Id_Forum_Diskusi',
-        'Nama_Mahasiswa',
         'Judul',
-        'Deskripsi'
+        'Deskripsi',
+        'Id_Mahasiswa',
+        'Id_Tim',
+        'Id_Korwil',
+        'Id_Dinas',
+        'Role_Pembuat',
     ];
 
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'Nama_Mahasiswa', 'Nama_Mahasiswa');
+    }
+    public function akunMahasiswa()
+    {
+        return $this->belongsTo(Akun::class, 'Id_Mahasiswa', 'Id_Mahasiswa');
+    }
+    public function akunTim()
+    {
+        return $this->belongsTo(Akun::class, 'Id_Tim', 'Id_Tim');
+    }
+    public function akunKorwil()
+    {
+        return $this->belongsTo(Akun::class, 'Id_Korwil', 'Id_Korwil');
+    }
+    public function responDiskusi()
+    {
+        return $this->hasMany(ResponDiskusi::class, 'Id_Forum_Diskusi', 'Id_Forum_Diskusi');
     }
 
     protected static function boot()

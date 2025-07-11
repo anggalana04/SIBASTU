@@ -1,75 +1,143 @@
 @extends('layouts.app')
 @section('content')
+<link rel="stylesheet" href="{{asset('css/pendaftaran.css')}}">
+@php
+    $mahasiswa = null;
+    if(Auth::user() && Auth::user()->Id_Mahasiswa) {
+        $mahasiswa = \App\Models\Mahasiswa::find(Auth::user()->Id_Mahasiswa);
+    }
+@endphp
 <div class="pendaftaran-layout">
     <main class="pendaftaran-main">
-        <form action="{{ route('mahasiswa.store') }}" method="POST" class="pendaftaran-form">
+        <form action="{{ $mahasiswa ? route('mahasiswa.update', $mahasiswa->Id_Mahasiswa) : route('mahasiswa.store') }}" method="POST" class="pendaftaran-form" enctype="multipart/form-data">
+            <h1 class="pendaftaran-title">Pendaftaran</h1>
             @csrf
+            @if($mahasiswa)
+                @method('PUT')
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger" style="background:#ffeaea;color:#b91c1c;border:1.5px solid #f87171;padding:1rem 1.2rem;border-radius:7px;margin-bottom:1.2rem;text-align:center;">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if($errors->any())
+                <div class="alert alert-danger" style="background:#ffeaea;color:#b91c1c;border:1.5px solid #f87171;padding:1rem 1.2rem;border-radius:7px;margin-bottom:1.2rem;">
+                    <ul style="margin:0;padding-left:1.2rem;text-align:left;">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="form-columns">
                 <div class="form-col">
                     <div class="form-group">
                         <label>Nama Mahasiswa</label>
-                        <input type="text" name="Nama_Mahasiswa" value="{{ old('Nama_Mahasiswa') }}" required>
+                        <input type="text" name="Nama_Mahasiswa" value="{{ old('Nama_Mahasiswa', $mahasiswa?->Nama_Mahasiswa) }}" required>
                     </div>
                     <div class="form-group">
                         <label>Universitas</label>
-                        <input type="text" name="Id_Universitas" value="{{ old('Id_Universitas') }}">
+                        <input type="text" name="Id_Universitas" value="{{ old('Id_Universitas', $mahasiswa?->Id_Universitas) }}">
                     </div>
                     <div class="form-group">
                         <label>Jurusan</label>
-                        <input type="text" name="Jurusan" value="{{ old('Jurusan') }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fakultas</label>
-                        <input type="text" name="Fakultas" value="{{ old('Fakultas') }}">
+                        <input type="text" name="Jurusan" value="{{ old('Jurusan', $mahasiswa?->Jurusan) }}" required>
                     </div>
                     <div class="form-group">
                         <label>Semester</label>
-                        <input type="number" name="Semester" value="{{ old('Semester') }}">
+                        <input type="number" name="Semester" value="{{ old('Semester', $mahasiswa?->Semester) }}">
                     </div>
                     <div class="form-group">
                         <label>Alamat</label>
-                        <input type="text" name="Alamat" value="{{ old('Alamat') }}">
+                        <input type="text" name="Alamat" value="{{ old('Alamat', $mahasiswa?->Alamat) }}">
                     </div>
                     <div class="form-group">
                         <label>No Hp</label>
-                        <input type="text" name="No_hp" value="{{ old('No_hp') }}">
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label>Surat Aktif Kuliah</label>
-                        <input type="text" name="Laporan_Aktifkuliah" value="{{ old('Laporan_Aktifkuliah') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>KPM</label>
-                        <input type="text" name="Laporan_Kpm" value="{{ old('Laporan_Kpm') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>KTP</label>
-                        <input type="text" name="Laporan_Ktp" value="{{ old('Laporan_Ktp') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>DNS</label>
-                        <input type="text" name="Laporan_Dns" value="{{ old('Laporan_Dns') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>KK</label>
-                        <input type="text" name="Laporan_Kk" value="{{ old('Laporan_Kk') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Kartu Keluarga</label>
-                        <input type="text" name="Laporan_KartuKeluarga" value="{{ old('Laporan_KartuKeluarga') }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Surat Rekomendasi</label>
-                        <input type="text" name="Laporan_Rekomendasi" value="{{ old('Laporan_Rekomendasi') }}">
+                        <input type="text" name="No_hp" value="{{ old('No_hp', $mahasiswa?->No_hp) }}">
                     </div>
                 </div>
             </div>
             <div class="form-group actions">
-                <button type="submit" class="btn-primary full-width">Pendaftaran</button>
+                @if($mahasiswa)
+                    <button type="button" class="btn-primary full-width" id="editBtn">Edit Data</button>
+                @else
+                    <button type="submit" class="btn-primary full-width">Pendaftaran</button>
+                @endif
             </div>
         </form>
     </main>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var editBtn = document.getElementById('editBtn');
+        if(editBtn) {
+            editBtn.addEventListener('click', function() {
+                document.querySelectorAll('.pendaftaran-form input').forEach(function(input) {
+                    input.removeAttribute('readonly');
+                    input.removeAttribute('disabled');
+                });
+                editBtn.style.display = 'none';
+                // Change button to submit
+                var actions = document.querySelector('.form-group.actions');
+                var submitBtn = document.createElement('button');
+                submitBtn.type = 'submit';
+                submitBtn.className = 'btn-primary full-width';
+                submitBtn.innerText = 'Simpan Perubahan';
+                actions.appendChild(submitBtn);
+            });
+        }
+    });
+</script>
+@push('styles')
+<style>
+.pendaftaran-form a {
+    color: #2563eb;
+    font-size: 0.97rem;
+    margin-top: 0.2rem;
+    display: inline-block;
+}
+.pendaftaran-state-box {
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin: 2.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.pendaftaran-state-message {
+    background: #d1f7d6;
+    color: #176b2c;
+    border: 2px solid #34c759;
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(52,199,89,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+}
+.icon-check {
+    font-size: 2.2rem;
+    color: #34c759;
+    margin-bottom: 0.3rem;
+}
+.pendaftaran-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+</style>
+@endpush
 @endsection

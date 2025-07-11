@@ -12,10 +12,9 @@ class ResponDiskusi extends Model
     public $timestamps = false;
     protected $fillable = [
         'Id_Respon',
-        'Id_Tim',
-        'Id_Mahasiswa',
-        'Id_Korwil',
-        'Judul',
+        'Id_Pengirim',
+        'Id_Forum_Diskusi',
+        'Role_Pengirim',
         'Deskripsi'
     ];
 
@@ -45,5 +44,21 @@ class ResponDiskusi extends Model
     public function korwil()
     {
         return $this->belongsTo(Korwil::class, 'Id_Korwil', 'Id_Korwil');
+    }
+    public function forumDiskusi()
+    {
+        return $this->belongsTo(ForumDiskusi::class, 'Id_Forum_Diskusi', 'Id_Forum_Diskusi');
+    }
+    public function akunMahasiswa()
+    {
+        return $this->belongsTo(\App\Models\Akun::class, 'Id_Pengirim', 'Id_Mahasiswa');
+    }
+    public function akunTim()
+    {
+        return $this->belongsTo(\App\Models\Akun::class, 'Id_Pengirim', 'Id_Tim');
+    }
+    public function akunKorwil()
+    {
+        return $this->belongsTo(\App\Models\Akun::class, 'Id_Pengirim', 'Id_Korwil');
     }
 }

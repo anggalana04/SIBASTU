@@ -1,34 +1,66 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <h1>Detail Forum Diskusi</h1>
-    <!-- Dummy Forum Detail -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <h4 class="card-title">Tips Belajar Efektif</h4>
-            <p class="card-text">Bagikan tips belajar yang efektif selama kuliah online.</p>
-            <span class="badge bg-primary">Mahasiswa</span>
+<link rel="stylesheet" href="{{ asset('css/detail-forum.css') }}">
+<div class="detail-forum-container">
+    <div class="detail-forum-header">
+        <div class="detail-forum-avatar">
+            {{ $forum->Id_Mahasiswa ? 'M' : ($forum->Id_Korwil ? 'K' : ($forum->Id_Tim ? 'T' : 'D')) }}
+        </div>
+        <div>
+            <div class="detail-forum-title">{{ $forum->Judul }}</div>
+            <div class="detail-forum-meta">
+                {{ $namaAkunCreator }}
+            </div>
         </div>
     </div>
-    <h5>Respon Diskusi</h5>
-    <ul class="list-group mb-3">
-        <li class="list-group-item">
-            <strong>Mahasiswa:</strong> Saya biasanya membuat jadwal belajar harian agar lebih teratur.
-        </li>
-        <li class="list-group-item">
-            <strong>Tim Lanny Jaya Cerdas:</strong> Gunakan teknik pomodoro untuk meningkatkan fokus saat belajar.
-        </li>
-        <li class="list-group-item">
-            <strong>Korwil:</strong> Jangan lupa untuk berdiskusi dengan teman jika ada materi yang sulit dipahami.
-        </li>
-    </ul>
-    <form>
-        <div class="mb-3">
-            <label for="respon" class="form-label">Tambah Respon</label>
-            <textarea class="form-control" id="respon" rows="3" placeholder="Tulis respon Anda..."></textarea>
+    <div class="detail-forum-desc">{{ $forum->Deskripsi }}</div>
+    <div class="detail-forum-komentar-section">
+        <div class="detail-forum-komentar-title">Komentar</div>
+        <div class="detail-forum-komentar-list">
+            @forelse($forum->responDiskusi as $respon)
+                <div class="detail-forum-komentar-item">
+                    <div class="detail-forum-komentar-avatar">
+                        @if($respon->Role_Pengirim === 'mahasiswa')
+                            M
+                        @elseif($respon->Role_Pengirim === 'tim')
+                            T
+                        @elseif($respon->Role_Pengirim === 'korwil')
+                            K
+                        @elseif($respon->Role_Pengirim === 'dinas')
+                            D
+                        @else
+                            ?
+                        @endif
+                    </div>
+                    <div class="detail-forum-komentar-body">
+                        <div class="detail-forum-komentar-user">
+                            @if($respon->Role_Pengirim === 'mahasiswa' && $respon->akunMahasiswa)
+                                {{ $respon->akunMahasiswa->Nama_Akun }}
+                            @elseif($respon->Role_Pengirim === 'tim' && $respon->akunTim)
+                                {{ $respon->akunTim->Nama_Akun }}
+                            @elseif($respon->Role_Pengirim === 'korwil' && $respon->akunKorwil)
+                                {{ $respon->akunKorwil->Nama_Akun }}
+                            @elseif($respon->Role_Pengirim === 'dinas')
+                                Dinas
+                            @else
+                                -
+                            @endif
+                        </div>
+                        <div class="detail-forum-komentar-text">{{ $respon->Deskripsi }}</div>
+                    </div>
+                </div>
+            @empty
+                <div class="detail-forum-komentar-item" style="color:#64748b;">Belum ada komentar.</div>
+            @endforelse
         </div>
-        <button type="submit" class="btn btn-primary">Kirim</button>
-    </form>
-    <a href="#" class="btn btn-secondary mt-3">Kembali ke Forum</a>
+        @if(auth()->check())
+        <form action="{{ route('forum-diskusi.addRespon', $forum->Id_Forum_Diskusi) }}" method="POST" class="detail-forum-komentar-form">
+            @csrf
+            <textarea name="Deskripsi" rows="3" placeholder="Tulis komentar..." required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+        @endif
+    </div>
+    <a href="{{ route('forum-diskusi.index') }}" class="btn btn-secondary mt-3">Kembali ke Forum</a>
 </div>
 @endsection

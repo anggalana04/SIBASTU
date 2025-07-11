@@ -11,6 +11,9 @@ class Akun extends Authenticatable
 
     protected $table = 'akun';
     protected $primaryKey = 'Id_Akun';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
 
     protected $fillable = [
         'Nama_Akun',
@@ -20,6 +23,16 @@ class Akun extends Authenticatable
         'Id_Mahasiswa',
         'role'
     ];
+
+    public function getAuthIdentifierName()
+    {
+        return 'Id_Akun';
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->Id_Akun;
+    }
 
     protected $hidden = [
         'Password',

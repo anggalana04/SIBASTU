@@ -12,12 +12,12 @@ class Validasi extends Model
     public $timestamps = false;
     protected $fillable = [
         'Id_Validasi',
+        'Id_Berkas',
         'Id_Mahasiswa',
-        'Nama_Mahasiswa',
-        'Jurusan',
-        'Fakultas',
-        'Semester',
-        'Tgl_Validasi'
+        'Id_Tim',
+        'Status_Berkas',
+        'Catatan',
+        'Tgl_Validasi',
     ];
 
     public function mahasiswa()
@@ -38,5 +38,15 @@ class Validasi extends Model
                 $model->Id_Validasi = 'VD_' . str_pad($num, 3, '0', STR_PAD_LEFT);
             }
         });
+    }
+
+    // Optionally, add a helper for status label
+    public static function statusOptions()
+    {
+        return [
+            'menunggu verifikasi' => 'Menunggu Verifikasi',
+            'terverifikasi' => 'Terverifikasi',
+            'ditolak' => 'Ditolak',
+        ];
     }
 }

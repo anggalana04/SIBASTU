@@ -9,21 +9,15 @@ class Mahasiswa extends Model
     protected $table = 'mahasiswa';
     protected $primaryKey = 'Id_Mahasiswa';
     public $incrementing = false;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'Id_Mahasiswa',
-        'Id_Bantuan',
         'Id_Universitas',
         'Nama_Mahasiswa',
         'Jurusan',
         'Semester',
         'Alamat',
-        'No_hp',
-        'Laporan_Aktifkuliah',
-        'Laporan_Kpm',
-        'Laporan_Dns',
-        'Laporan_Kk',
-        'Laporan_Tabungan'
+        'No_hp'
     ];
 
     protected static function boot()

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f3f4f6;
+    background: #f8fafc;
     color: #222;
     margin: 0;
     padding: 0;
@@ -50,25 +50,39 @@ header {
 }
 
 main {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    padding: 2rem;
+    max-width: none;
+    margin: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.container,
+.main-content,
+.mahasiswa-content,
+.tim-content,
+.korwil-content,
+.dinas-content {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
 }
 
 .container {
     display: flex;
+    flex-direction: row;
     min-height: 100vh;
 }
 
 .sidebar {
     width: 220px;
-    background: #222e3c;
+    background: #619ce4;
     color: #fff;
     padding: 2rem 1rem;
     min-height: 100vh;
+    float: none;
 }
 
 .sidebar nav ul {
@@ -97,10 +111,13 @@ main {
 }
 
 .main-content {
-    flex: 1;
-    padding: 2rem;
+    flex: 1 1 0%;
+    padding: 0;
     background: #f3f4f6;
     min-height: 100vh;
+    padding-left: 0;
+    display: block;
+    /* Remove flex and column to prevent vertical centering */
 }
 
 /* Mahasiswa content styling */
@@ -137,13 +154,14 @@ main {
 
 @media (max-width: 600px) {
     main {
-        padding: 1rem;
+        padding: 0;
     }
 }
 
 @media (max-width: 800px) {
     .container {
         flex-direction: column;
+        display: flex;
     }
 
     .sidebar {
@@ -153,7 +171,7 @@ main {
     }
 
     .main-content {
-        padding: 1rem;
+        padding: 0;
     }
 
     .header-content {
