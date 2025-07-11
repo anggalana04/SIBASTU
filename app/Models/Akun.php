@@ -18,6 +18,7 @@ class Akun extends Authenticatable
         'Id_Tim',
         'Id_Korwil',
         'Id_Mahasiswa',
+        'role'
     ];
 
     protected $hidden = [

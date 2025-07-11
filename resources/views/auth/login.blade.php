@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href={{ asset('css/vanilla.css') }}> 
+    <link rel="stylesheet" href={{ asset('css/vanilla.css') }}>
 </head>
 <body>
     <div class="login-container">
@@ -31,15 +31,9 @@
                 <label for="Password">Password</label>
                 <input id="Password" type="password" name="Password" required autocomplete="current-password">
             </div>
-            <div class="form-group checkbox">
-                <input type="checkbox" id="remember_me" name="remember">
-                <label for="remember_me">Remember me</label>
-            </div>
+            
             <div class="form-group actions">
                 <button type="submit" class="btn-primary">Log in</button>
-                @if (Route::has('password.request'))
-                    <a class="forgot-link" href="{{ route('password.request') }}">Forgot your password?</a>
-                @endif
             </div>
         </form>
     </div>

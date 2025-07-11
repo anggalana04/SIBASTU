@@ -22,6 +22,7 @@
                     @endphp
                     @if($user && $user->role === 'mahasiswa')
                         <ul>
+                            <h1>{{ $user->role }}</h1>
                             <li><a href="/mahasiswa/dashboard">Dashboard</a></li>
                             <li><a href="{{ route('mahasiswa.pendaftaran') }}">Pendaftaran</a></li>
                             <li><a href="/mahasiswa/upload-berkas">Upload Berkas</a></li>

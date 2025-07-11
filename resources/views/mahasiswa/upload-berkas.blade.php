@@ -5,14 +5,6 @@
     <form action="{{ route('berkas.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label>ID Berkas</label>
-            <input type="text" name="Id_Berkas" class="form-control" value="{{ old('Id_Berkas') }}" readonly placeholder="Otomatis">
-        </div>
-        <div class="mb-3">
-            <label>ID Mahasiswa</label>
-            <input type="text" name="Id_Mahasiswa" class="form-control" value="{{ old('Id_Mahasiswa') }}" readonly placeholder="Otomatis">
-        </div>
-        <div class="mb-3">
             <label>Nomor Rekening</label>
             <input type="text" name="Nomor_Rekening" class="form-control" value="{{ old('Nomor_Rekening') }}" required>
         </div>

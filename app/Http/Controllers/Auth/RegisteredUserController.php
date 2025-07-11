@@ -32,14 +32,16 @@ class RegisteredUserController extends Controller
         $request->validate([
             'Nama_Akun' => ['required', 'string', 'max:255', 'unique:akun'],
             'Password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'Id_Tim' => ['nullable', 'integer'],
-            'Id_Korwil' => ['nullable', 'integer'],
-            'Id_Mahasiswa' => ['nullable', 'integer'],
+            'role' => ['required', 'in:mahasiswa,korwil,tim,dinas'],
+            'Id_Tim' => ['nullable', 'string'],
+            'Id_Korwil' => ['nullable', 'string'],
+            'Id_Mahasiswa' => ['nullable', 'string'],
         ]);
 
         $akun = Akun::create([
             'Nama_Akun' => $request->Nama_Akun,
             'Password' => Hash::make($request->Password),
+            'role' => $request->role,
             'Id_Tim' => $request->Id_Tim,
             'Id_Korwil' => $request->Id_Korwil,
             'Id_Mahasiswa' => $request->Id_Mahasiswa,
