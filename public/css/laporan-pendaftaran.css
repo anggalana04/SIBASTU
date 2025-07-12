@@ -1,0 +1,75 @@
+/* laporan-pendaftaran.css - Modern, clean, minimalistic style for laporan pendaftaran table */
+
+.laporan-pendaftaran-container {
+    margin-top: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px 0 rgba(37,99,235,0.07);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+.laporan-pendaftaran-container h2 {
+    color: #2563eb;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+.laporan-pendaftaran-container .btn-success {
+    background: #2563eb;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    margin-bottom: 1.2rem;
+    transition: background 0.2s;
+}
+.laporan-pendaftaran-container .btn-success:hover {
+    background: #1746a2;
+}
+.laporan-pendaftaran-container .table {
+    background: #f8fafc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.laporan-pendaftaran-container .table th {
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 0.8rem 0.5rem;
+}
+.laporan-pendaftaran-container .table td {
+    background: #fff;
+    color: #222;
+    border: none;
+    padding: 0.7rem 0.5rem;
+    vertical-align: middle;
+}
+.laporan-pendaftaran-container .table-striped tbody tr:nth-of-type(odd) {
+    background: #f1f5fb;
+}
+.laporan-pendaftaran-container .table-bordered {
+    border: 1px solid #e0e7ef;
+}
+.laporan-pendaftaran-container .table-bordered th,
+.laporan-pendaftaran-container .table-bordered td {
+    border: 1px solid #e0e7ef;
+}
+.laporan-pendaftaran-container .pagination {
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+@media (max-width: 768px) {
+    .laporan-pendaftaran-container {
+        padding: 1rem 0.2rem;
+    }
+    .laporan-pendaftaran-container h2 {
+        font-size: 1.2rem;
+    }
+    .laporan-pendaftaran-container .table th,
+    .laporan-pendaftaran-container .table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.95rem;
+    }
+}

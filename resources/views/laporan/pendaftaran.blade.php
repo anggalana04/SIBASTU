@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="container mt-4">
+<link rel="stylesheet" href="{{ asset('css/laporan-pendaftaran.css') }}">
+<div class="laporan-pendaftaran-container">
     <h2>Laporan Pendaftaran Mahasiswa</h2>
     <a href="#" class="btn btn-success mb-3">Export to PDF</a>
     <div class="table-responsive">

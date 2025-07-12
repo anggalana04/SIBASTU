@@ -11,7 +11,7 @@
     <body>
         <header class="main-header">
             <div class="header-content">
-                <h1>{{ config('app.name', 'Laravel') }}</h1>
+                <h1>SIBASTU</h1>
             </div>
         </header>
         <div class="container">
