@@ -19,12 +19,12 @@ class Validasi extends Model
         'Catatan',
         'Tgl_Validasi',
     ];
-
+    
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'Id_Mahasiswa', 'Id_Mahasiswa');
     }
-
+    
     protected static function boot()
     {
         parent::boot();
@@ -39,7 +39,7 @@ class Validasi extends Model
             }
         });
     }
-
+    
     // Optionally, add a helper for status label
     public static function statusOptions()
     {
@@ -48,5 +48,10 @@ class Validasi extends Model
             'terverifikasi' => 'Terverifikasi',
             'ditolak' => 'Ditolak',
         ];
+    }
+    
+    public function berkas()
+    {
+        return $this->belongsTo(Berkas::class, 'Id_Berkas', 'Id_Berkas');
     }
 }

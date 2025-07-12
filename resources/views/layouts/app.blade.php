@@ -51,9 +51,8 @@
                     @elseif($user && $user->role === 'dinas')
                         <ul>
                             <li><a href="/dinas/dashboard" class="@if(request()->is('dinas/dashboard')) active @endif">🏠 Dashboard</a></li>
-                            <li><a href="/dinas/laporan" class="@if(request()->is('dinas/laporan')) active @endif">📊 Laporan</a></li>
-                            <li><a href="/dinas/laporan/pendaftaran" class="@if(request()->is('dinas/laporan/pendaftaran')) active @endif">📝 Laporan Pendaftaran</a></li>
-                            <li><a href="/dinas/laporan/pemberian" class="@if(request()->is('dinas/laporan/pemberian')) active @endif">💡 Laporan Pemberian</a></li>         
+                            <li><a href="/dinas/pendaftaran" class="@if(request()->is('dinas/pendaftaran')) active @endif">📝 Laporan Pendaftaran</a></li>
+                            <li><a href="/dinas/bantuan" class="@if(request()->is('dinas/bantuan')) active @endif">💡 Laporan Pemberian</a></li>
                             <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @else

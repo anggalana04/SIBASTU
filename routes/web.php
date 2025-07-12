@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\ProfileController;
@@ -8,6 +7,11 @@ use App\Http\Controllers\ForumDiskusiController;
 use App\Http\Controllers\ValidasiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+// Dinas routes
+
+
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -91,8 +95,16 @@ Route::middleware('auth')->group(function () {
     });
 
     // Laporan routes for Admin Dinas
-    Route::get('pendaftaran', [\App\Http\Controllers\LaporanController::class, 'laporanPendaftaran'])->name('laporan.pendaftaran');
-    Route::get('bantuan', [\App\Http\Controllers\LaporanController::class, 'laporanBantuan'])->name('laporan.bantuan');
+    Route::prefix('dinas')->group(function () {
+        Route::view('/dashboard', 'dinas.dashboard')->name('dinas.dashboard');
+        // Main laporan page for dinas
+        Route::view('/laporan', 'dinas.laporan')->name('dinas.laporan');
+        // Laporan Pendaftaran
+        Route::get('/pendaftaran', [\App\Http\Controllers\LaporanController::class, 'laporanPendaftaran'])->name('laporan.pendaftaran');
+        // Laporan Pemberian Bantuan
+        Route::get('/bantuan', [\App\Http\Controllers\LaporanController::class, 'laporanBantuan'])->name('laporan.bantuan');
+    });
+
 
     // Mahasiswa & Korwil view pengumuman
     Route::get('/mahasiswa/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('mahasiswa.informasi-pemberian');

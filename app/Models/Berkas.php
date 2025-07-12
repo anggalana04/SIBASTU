@@ -9,7 +9,7 @@ class Berkas extends Model
     protected $table = 'berkas';
     protected $primaryKey = 'Id_Berkas';
     public $incrementing = false;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'Id_Berkas',
         'Id_Mahasiswa',

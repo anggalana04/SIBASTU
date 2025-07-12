@@ -11,40 +11,28 @@
                     <th>NIM</th>
                     <th>Jurusan</th>
                     <th>Universitas</th>
+                    <th>Korwil</th>
                     <th>Tanggal Pendaftaran</th>
                     <th>Status Berkas</th>
-                    <th>Dokumen Diunggah</th>
+           
                 </tr>
             </thead>
             <tbody>
-                @foreach($mahasiswa as $mhs)
+                @foreach($pendaftaran as $val)
                     <tr>
-                        <td>{{ $mhs->Nama_Mahasiswa }}</td>
-                        <td>{{ $mhs->NIM }}</td>
-                        <td>{{ $mhs->Jurusan }}</td>
-                        <td>{{ $mhs->Universitas }}</td>
-                        <td>{{ optional($mhs->created_at)->format('d-m-Y') }}</td>
-                        <td>{{ optional($mhs->berkas->validasi->first())->Status_Berkas ?? '-' }}</td>
-                        <td>
-                            @if($mhs->berkas)
-                                @php $dok = [];
-                                    if($mhs->berkas->Lampiran_aktifkuliah) $dok[] = 'Aktif Kuliah';
-                                    if($mhs->berkas->Lampiran_kpm) $dok[] = 'KPM';
-                                    if($mhs->berkas->Lampiran_ktp) $dok[] = 'KTP';
-                                    if($mhs->berkas->Lampiran_dns) $dok[] = 'DNS';
-                                    if($mhs->berkas->Lampiran_kk) $dok[] = 'KK';
-                                    if($mhs->berkas->Lampiran_rekomendasi) $dok[] = 'Rekomendasi';
-                                @endphp
-                                {{ implode(', ', $dok) }}
-                            @else
-                                -
-                            @endif
-                        </td>
+                        <td>{{ $val->mahasiswa->Nama_Mahasiswa ?? '-' }}</td>
+                        <td>{{ $val->mahasiswa->NIM ?? '-' }}</td>
+                        <td>{{ $val->mahasiswa->Jurusan ?? '-' }}</td>
+                        <td>{{ $val->mahasiswa->Universitas ?? '-' }}</td>
+                        <td>{{ $val->mahasiswa->korwil->Nama_Korwil ?? '-' }}</td>
+                        <td>{{ optional($val->berkas->created_at ?? null)->format('d-m-Y') }}</td>
+                        <td>{{ $val->Status_Berkas }}</td>
+                       
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div>{{ $mahasiswa->links() }}</div>
+        <div>{{ $pendaftaran->links() }}</div>
     </div>
 </div>
 @endsection
