@@ -72,9 +72,29 @@ Route::middleware('auth')->group(function () {
 
         Route::view('/informasi-pemberian', 'tim.informasi-pemberian')->name('tim.informasi-pemberian');
         Route::view('/forum-diskusi', 'tim.forum-diskusi')->name('tim.forum-diskusi');
+
+        Route::get('/bantuan-studi', [\App\Http\Controllers\TimBantuanStudiController::class, 'index'])->name('tim.bantuan-studi');
+        Route::get('/bantuan-studi/give/{id}', [\App\Http\Controllers\TimBantuanStudiController::class, 'give'])->name('tim.bantuan-studi.give');
+        Route::post('/bantuan-studi/give/{id}', [\App\Http\Controllers\TimBantuanStudiController::class, 'storeGive'])->name('tim.bantuan-studi.give.store');
+        Route::get('/informasi-pemberian/{id}', [\App\Http\Controllers\InformasiPemberianBantuanController::class, 'show'])->name('tim.informasi-pemberian.show');
+        Route::put('/informasi-pemberian/{id}', [\App\Http\Controllers\InformasiPemberianBantuanController::class, 'update'])->name('tim.informasi-pemberian.update');
+        Route::get('/informasi-pemberian/{id}/edit', [\App\Http\Controllers\InformasiPemberianBantuanController::class, 'edit'])->name('informasi.edit');
+        Route::delete('/informasi-pemberian/{id}', [\App\Http\Controllers\InformasiPemberianBantuanController::class, 'destroy'])->name('informasi.destroy');
+
+        // Pengumuman Bantuan Studi
+        Route::get('/tim/pengumuman-bantuan-studi', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('tim.pengumuman-bantuan-studi');
+        Route::post('/tim/pengumuman-bantuan-studi', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'store'])->name('tim.pengumuman-bantuan-studi.store');
+        Route::get('/tim/pengumuman-bantuan-studi/{id}/edit', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'edit'])->name('tim.pengumuman-bantuan-studi.edit');
+        Route::put('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'update'])->name('tim.pengumuman-bantuan-studi.update');
+        Route::delete('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'destroy'])->name('tim.pengumuman-bantuan-studi.destroy');
     });
 
+    // Mahasiswa & Korwil view pengumuman
+    Route::get('/mahasiswa/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('mahasiswa.informasi-pemberian');
+    Route::get('/korwil/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('korwil.informasi-pemberian');
+
     Route::post('forum-diskusi/{id}/respon', [ForumDiskusiController::class, 'addRespon'])->name('forum-diskusi.addRespon');
+    Route::post('/berkas/reupload', [App\Http\Controllers\BerkasController::class, 'reupload'])->name('berkas.reupload');
 });
 
 require __DIR__ . '/auth.php';

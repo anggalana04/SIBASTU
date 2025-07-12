@@ -9,10 +9,6 @@
             <label for="Nama_Korwil">Nama Korwil</label>
             <input type="text" name="Nama_Korwil" id="Nama_Korwil" required maxlength="100">
         </div>
-        <div class="form-group">
-            <label for="Nama_Korwil">Nama Korwil</label>
-            <input type="text" name="Nama_Kota" id="Nama_Kota" required maxlength="100">
-        </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="{{ route('tim.data-korwil') }}" class="btn btn-secondary">Batal</a>
     </form>

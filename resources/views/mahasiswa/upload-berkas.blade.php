@@ -29,7 +29,10 @@
                 <div style="margin-bottom:1.2rem;">
                     <span style="color:#b91c1c;font-weight:600;">Silahkan upload berkas kembali.</span>
                 </div>
-                <a href="{{ route('berkas.create') }}" class="btn btn-primary">Upload Berkas</a>
+                <form action="{{ route('berkas.reupload') }}" method="POST" style="display:inline-block;">
+                    @csrf
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Berkas dan validasi sebelumnya akan dihapus. Lanjutkan?')">Upload Berkas</button>
+                </form>
             @endif
         </div>
     </div>

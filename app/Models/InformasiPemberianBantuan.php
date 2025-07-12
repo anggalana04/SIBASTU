@@ -14,8 +14,10 @@ class InformasiPemberianBantuan extends Model
         'Id_Informasi',
         'Id_Bantuan',
         'Id_Mahasiswa',
-        'Nama_Mahasiswa',
-        'Nama_Korwil'
+        'Id_Korwil',
+        'Status_Bantuan',
+        'Tgl_Penyaluran',
+        'Keterangan',
     ];
 
     protected static function boot()

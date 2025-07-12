@@ -18,7 +18,9 @@ class MahasiswaController extends Controller
             }
             $validated = $request->validate([
                 'Nama_Mahasiswa' => 'required|string|max:100',
-                'Id_Universitas' => 'nullable|string|max:10',
+                'Universitas' => 'nullable|string|max:100',
+                'Id_Korwil' => 'required|string|max:10',
+                'NIM' => 'required|string|max:20',
                 'Jurusan' => 'required|string|max:50',
                 'Semester' => 'nullable|integer',
                 'Alamat' => 'nullable|string',
@@ -52,14 +54,16 @@ class MahasiswaController extends Controller
             $mahasiswa = Mahasiswa::findOrFail($id);
             $validated = $request->validate([
                 'Nama_Mahasiswa' => 'required|string|max:100',
-                'Id_Universitas' => 'nullable|string|max:10',
+                'Universitas' => 'nullable|string|max:100',
+                'Id_Korwil' => 'required|string|max:10',
+                'NIM' => 'required|string|max:20',
                 'Jurusan' => 'required|string|max:50',
                 'Semester' => 'nullable|integer',
                 'Alamat' => 'nullable|string',
                 'No_hp' => 'nullable|string|max:15',
             ]);
             $mahasiswa->update($validated);
-            return redirect()->route('dashboard')->with('success', 'Data Mahasiswa berhasil diupdate.');
+            return redirect()->route('mahasiswa.pendaftaran')->with('success', 'Data Mahasiswa berhasil diupdate.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {

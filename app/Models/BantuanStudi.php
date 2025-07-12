@@ -12,10 +12,11 @@ class BantuanStudi extends Model
     public $timestamps = false;
     protected $fillable = [
         'Id_Bantuan',
-        'Id_Mahasiswa',
-        'Nama_Mahasiswa',
+        'Jenis_Bantuan',
+        'Deskripsi',
+        'Nominal',
+        'Periode_Bantuan',
         'Tahun_Penerimaan',
-        'Tgl_Pendaftar'
     ];
 
     public function mahasiswa()

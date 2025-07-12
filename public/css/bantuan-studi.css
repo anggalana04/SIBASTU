@@ -1,4 +1,4 @@
-/* Modern dashboard style for informasi pemberian page, inspired by attached UI */
+/* Modern dashboard style for Bantuan Studi management, matching attached UI */
 body,
 html {
     background: #f8fafc;
@@ -6,17 +6,15 @@ html {
 }
 
 .main-content {
-    width: 100vw;
-    max-width: 100vw;
-    margin: 0 auto;
-    padding: 0 8px;
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0;
     background: none;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 2rem 2rem;
-    box-sizing: border-box;
+    gap: 2.5rem 2.5rem;
 }
 
 @media (max-width: 900px) {
@@ -24,8 +22,6 @@ html {
         grid-template-columns: 1fr;
         gap: 1.2rem;
         padding: 0.5rem;
-        width: 100vw;
-        max-width: 100vw;
     }
 }
 
@@ -137,7 +133,6 @@ html {
     margin-top: 2rem;
 }
 
-/* Notes and schedule cards */
 .dashboard-notes {
     background: #f1f5f9;
     border-radius: 18px;
@@ -173,18 +168,11 @@ html {
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
-    padding: 2rem 1.5rem;
+    padding: 0;
     margin-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.dashboard-schedule table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
-    background: #fff;
 }
 
 .dashboard-schedule th,
@@ -204,81 +192,6 @@ html {
     border-bottom: none;
 }
 
-.informasi-pemberian-detail-container {
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f8fafc;
-    padding: 24px 0 32px 0;
-    box-sizing: border-box;
-}
-
-.dashboard-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2563eb;
-    margin-bottom: 2.2rem;
-}
-
-.dashboard-top-row.flex-row {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    justify-content: center;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 0;
-    box-sizing: border-box;
-}
-
-.dashboard-card.mahasiswa-card,
-.dashboard-card.berkas-list-container {
-    flex: 1 1 0;
-    min-width: 220px;
-    max-width: 400px;
-    padding: 1.5rem 1rem 1.2rem 1rem;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.berkas-list-outer-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.dashboard-card.keputusan-section.keputusan-full {
-    width: 100%;
-    max-width: 480px;
-    margin-top: 24px;
-    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 1100px) {
-    .dashboard-top-row.flex-row {
-        flex-direction: column;
-        gap: 24px;
-        max-width: 700px;
-    }
-
-    .dashboard-card.mahasiswa-card,
-    .dashboard-card.berkas-list-container {
-        max-width: 100%;
-        margin-bottom: 0;
-    }
-
-    .dashboard-card.keputusan-section.keputusan-full {
-        max-width: 100%;
-    }
-}
-
 @media (max-width: 900px) {
 
     .dashboard-card,
@@ -286,67 +199,13 @@ html {
     .dashboard-schedule {
         padding: 1.2rem 0.7rem;
     }
-
-    .dashboard-top-row.flex-row {
-        max-width: 100%;
-    }
-
-    .dashboard-card.keputusan-section.keputusan-full {
-        max-width: 100%;
-    }
 }
 
-@media (max-width: 700px) {
-    .informasi-pemberian-detail-container {
-        padding: 12px 0 24px 0;
+@media (max-width: 600px) {
+
+    .dashboard-card,
+    .dashboard-notes,
+    .dashboard-schedule {
+        padding: 0.7rem 0.2rem;
     }
-
-    .dashboard-title {
-        font-size: 1.3rem;
-        margin-bottom: 1.2rem;
-    }
-
-    .dashboard-card {
-        padding: 1.2rem 0.7rem;
-    }
-
-    .dashboard-top-row.flex-row {
-        gap: 12px;
-        max-width: 100%;
-    }
-
-    .dashboard-card.keputusan-section.keputusan-full {
-        margin-top: 16px;
-        padding: 1.2rem 0.7rem;
-    }
-}
-
-.berkas-mini-list {
-    background: #f1f5f9;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(37, 99, 235, 0.04);
-}
-
-.berkas-mini-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-.berkas-mini-label {
-    font-weight: 600;
-    color: #2563eb;
-    min-width: 140px;
-    display: inline-block;
-}
-
-.berkas-mini-preview .btn {
-    margin-left: 8px;
-    padding: 0.3rem 1rem;
-    font-size: 0.95rem;
-    border-radius: 6px;
 }

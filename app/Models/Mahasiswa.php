@@ -12,8 +12,10 @@ class Mahasiswa extends Model
     public $timestamps = true;
     protected $fillable = [
         'Id_Mahasiswa',
-        'Id_Universitas',
+        'Universitas',
+        'Id_Korwil', // Add this line
         'Nama_Mahasiswa',
+        'NIM',
         'Jurusan',
         'Semester',
         'Alamat',
@@ -58,5 +60,9 @@ class Mahasiswa extends Model
     public function responDiskusi()
     {
         return $this->hasMany(ResponDiskusi::class, 'Id_Mahasiswa', 'Id_Mahasiswa');
+    }
+    public function korwil()
+    {
+        return $this->belongsTo(Korwil::class, 'Id_Korwil', 'Id_Korwil');
     }
 }

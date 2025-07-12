@@ -74,15 +74,21 @@ main {
     display: flex;
     flex-direction: row;
     min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    /* Remove left margin/gap between sidebar and content */
 }
 
 .sidebar {
-    width: 220px;
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
     background: #619ce4;
     color: #fff;
     padding: 2rem 1rem;
     min-height: 100vh;
     float: none;
+    box-sizing: border-box;
 }
 
 .sidebar nav ul {
@@ -115,9 +121,11 @@ main {
     padding: 0;
     background: #f3f4f6;
     min-height: 100vh;
-    padding-left: 0;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
     display: block;
-    /* Remove flex and column to prevent vertical centering */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Mahasiswa content styling */
@@ -165,9 +173,11 @@ main {
     }
 
     .sidebar {
-        width: 100%;
-        min-height: auto;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
         padding: 1rem 0.5rem;
+        min-height: auto;
     }
 
     .main-content {

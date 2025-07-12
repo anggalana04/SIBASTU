@@ -62,19 +62,35 @@
 }
 
 .form-group input[type="text"],
-.form-group input[type="number"] {
+.form-group input[type="number"],
+.form-group select,
+.styled-select {
     padding: 0.6rem 1rem;
     border: 1px solid #e2e8f0;
     border-radius: 7px;
     font-size: 1rem;
     background: #f1f5f9;
     transition: border 0.2s;
+    color: #222;
+    font-weight: 500;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus,
+.styled-select:focus {
     border: 1.5px solid #2563eb;
     outline: none;
     background: #fff;
+}
+
+.form-group select option {
+    color: #222;
+    background: #fff;
+    font-weight: 500;
 }
 
 .form-group.actions {

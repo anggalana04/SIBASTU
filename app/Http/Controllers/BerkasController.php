@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Berkas;
 use App\Models\Mahasiswa;
+use App\Models\Validasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BerkasController extends Controller
 {
@@ -39,6 +41,18 @@ class BerkasController extends Controller
         $user = Auth::user();
         $data = $validated;
         $data['Id_Mahasiswa'] = $user->Id_Mahasiswa;
+        // Get korwil name from relationship if available
+        $korwilName = 'nokorwil';
+        if ($user->Id_Korwil) {
+            $korwil = \App\Models\Korwil::find($user->Id_Korwil);
+            if ($korwil) {
+                $korwilName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $korwil->Nama_Korwil);
+            }
+        }
+        $nim = $user->NIM ?? $user->nim ?? 'nonim';
+        $nim = preg_replace('/[^A-Za-z0-9_\-]/', '_', $nim); // sanitize
+        $nama = $user->Nama_Mahasiswa ?? $user->nama_mahasiswa ?? 'anonim';
+        $nama = preg_replace('/[^A-Za-z0-9_\-]/', '_', $nama); // sanitize
         foreach (
             [
                 'Lampiran_aktifkuliah',
@@ -50,7 +64,15 @@ class BerkasController extends Controller
             ] as $fileField
         ) {
             if ($request->hasFile($fileField)) {
-                $data[$fileField] = $request->file($fileField)->store('berkas', 'public');
+                $originalName = $request->file($fileField)->getClientOriginalName();
+                $ext = $request->file($fileField)->getClientOriginalExtension();
+                $baseName = pathinfo($originalName, PATHINFO_FILENAME);
+                $baseName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $baseName);
+                $newFileName = $nim . '_' . $nama . '_' . $fileField . '_' . $baseName . '_' . uniqid() . '.' . $ext;
+                $folder = 'berkas/' . $korwilName . '/' . $nim . '_' . $nama;
+                $data[$fileField] = $request->file($fileField)->storeAs($folder, $newFileName, 'public');
+            } else {
+                unset($data[$fileField]); // Don't overwrite with null if not uploaded
             }
         }
         $berkas = Berkas::create($data);
@@ -65,16 +87,9 @@ class BerkasController extends Controller
         return redirect()->route('mahasiswa.upload-berkas')->with('success', 'Berkas uploaded successfully.');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $berkas = Berkas::findOrFail($id);
-        return view('mahasiswa.berkas.show', compact('berkas'));
-    }
-
-    public function destroy($id)
-    {
-        $berkas = Berkas::findOrFail($id);
-        $berkas->delete();
-        return redirect()->route('berkas.index')->with('success', 'Berkas deleted successfully.');
+        return view('mahasiswa.berkas.edit', compact('berkas'));
     }
 }

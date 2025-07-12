@@ -19,16 +19,28 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+        // 6. Korwilba
+        Schema::create('korwil', function (Blueprint $table) {
+            $table->string('Id_Korwil', 10)->primary();
+            $table->string('Nama_Korwil', 100);
+            $table->string('Nama_Kota', 100)->nullable();
+        });
+
+
         // 2. Mahasiswa
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->string('Id_Mahasiswa', 10)->primary();
-            $table->string('Id_Universitas', 10)->nullable();
+            $table->string('Universitas', 50)->nullable();
+            $table->string('Id_Korwil', 10)->nullable(); // Add this line
+            $table->string('NIM', 20)->nullable();
+
             $table->string('Nama_Mahasiswa', 100);
             $table->string('Jurusan', 50);
             $table->integer('Semester')->nullable();
             $table->text('Alamat')->nullable();
             $table->string('No_hp', 15)->nullable();
             $table->timestamps();
+            $table->foreign('Id_Korwil')->references('Id_Korwil')->on('korwil')->onDelete('set null'); // Add FK constraint
         });
 
         // 3. Universitas
@@ -63,12 +75,7 @@ return new class extends Migration {
             $table->string('Jabatan', 50)->nullable();
         });
 
-        // 6. Korwil
-        Schema::create('korwil', function (Blueprint $table) {
-            $table->string('Id_Korwil', 10)->primary();
-            $table->string('Nama_Korwil', 100);
-            $table->string('Nama_Kota', 100)->nullable();
-        });
+
 
         // 7. Bantuan Studi
         Schema::create('bantuan_studi', function (Blueprint $table) {
@@ -126,6 +133,16 @@ return new class extends Migration {
 
             $table->foreign('Id_Forum_Diskusi')->references('Id_Forum_Diskusi')->on('forum_diskusi')->onDelete('cascade');
         });
+        // 12. Pengumuman Bantuan Studi
+        Schema::create('pengumuman_bantuan_studi', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('judul', 150)->nullable();
+            $table->text('isi')->nullable();
+            $table->date('tanggal_mulai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
+            $table->text('syarat')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -141,5 +158,6 @@ return new class extends Migration {
         Schema::dropIfExists('validasi');
         Schema::dropIfExists('forum_diskusi');
         Schema::dropIfExists('respon_diskusi');
+        Schema::dropIfExists('pengumuman_bantuan_studi');
     }
 };

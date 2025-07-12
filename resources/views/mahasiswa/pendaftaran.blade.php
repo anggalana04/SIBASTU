@@ -32,12 +32,16 @@
             <div class="form-columns">
                 <div class="form-col">
                     <div class="form-group">
+                        <label>NIM</label>
+                        <input type="text" name="NIM" value="{{ old('NIM', $mahasiswa?->NIM) }}" required>
+                    </div>
+                    <div class="form-group">
                         <label>Nama Mahasiswa</label>
                         <input type="text" name="Nama_Mahasiswa" value="{{ old('Nama_Mahasiswa', $mahasiswa?->Nama_Mahasiswa) }}" required>
                     </div>
                     <div class="form-group">
                         <label>Universitas</label>
-                        <input type="text" name="Id_Universitas" value="{{ old('Id_Universitas', $mahasiswa?->Id_Universitas) }}">
+                        <input type="text" name="Universitas" value="{{ old('Universitas', $mahasiswa?->Universitas) }}">
                     </div>
                     <div class="form-group">
                         <label>Jurusan</label>
@@ -54,6 +58,15 @@
                     <div class="form-group">
                         <label>No Hp</label>
                         <input type="text" name="No_hp" value="{{ old('No_hp', $mahasiswa?->No_hp) }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Pilih Korwil</label>
+                        <select name="Id_Korwil" class="styled-select" required>
+                            <option value="">-- Pilih Korwil --</option>
+                            @foreach(\App\Models\Korwil::orderBy('Nama_Korwil')->get() as $korwil)
+                                <option value="{{ $korwil->Id_Korwil }}" {{ old('Id_Korwil', $mahasiswa?->Id_Korwil) == $korwil->Id_Korwil ? 'selected' : '' }}>{{ $korwil->Nama_Korwil }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -76,6 +89,10 @@
                     input.removeAttribute('readonly');
                     input.removeAttribute('disabled');
                 });
+                document.querySelectorAll('.pendaftaran-form select').forEach(function(select) {
+                    select.removeAttribute('readonly');
+                    select.removeAttribute('disabled');
+                });
                 editBtn.style.display = 'none';
                 // Change button to submit
                 var actions = document.querySelector('.form-group.actions');
@@ -90,6 +107,21 @@
 </script>
 @push('styles')
 <style>
+.styled-select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f1f5f9;
+    transition: border 0.2s;
+    color: #2563eb;
+    font-weight: 500;
+}
+.styled-select:focus {
+    border: 1.5px solid #2563eb;
+    outline: none;
+    background: #fff;
+}
 .pendaftaran-form a {
     color: #2563eb;
     font-size: 0.97rem;

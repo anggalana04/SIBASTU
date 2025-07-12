@@ -22,7 +22,6 @@ class KorwilController extends Controller
     {
         $validated = $request->validate([
             'Nama_Korwil' => 'required|string|max:100',
-            'Nama_Kota' => 'required|string|max:100'
         ]);
         Korwil::create($validated);
         return redirect()->route('tim.data-korwil')->with('success', 'Korwil berhasil ditambahkan.');

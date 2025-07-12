@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AkunSeeder;
+use Database\Seeders\KorwilSeeder;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -52,5 +53,6 @@ class DatabaseSeeder extends Seeder
 
         // Seed dummy akun data
         $this->call(AkunSeeder::class);
+        $this->call(KorwilSeeder::class);
     }
 }
