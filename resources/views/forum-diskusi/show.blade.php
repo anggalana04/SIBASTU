@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/detail-forum.css') }}">
-<div class="detail-forum-container">
+<a href="{{ route('forum-diskusi.index') }}" class="btn btn-secondary detail-forum-back" title="Kembali ke Forum" style="padding:0.4em 1em;margin:0.7em 0 0.7em 0.7em;display:inline-block;font-size:1.5rem;z-index:10;text-decoration:none;position:fixed;left:16rem;top:6rem;">◀️</a>
+<div class="detail-forum-container" style="position:relative;">
     <div class="detail-forum-header">
         <div class="detail-forum-avatar">
             {{ $forum->Id_Mahasiswa ? 'M' : ($forum->Id_Korwil ? 'K' : ($forum->Id_Tim ? 'T' : 'D')) }}
@@ -50,17 +51,17 @@
                     </div>
                 </div>
             @empty
-                <div class="detail-forum-komentar-item" style="color:#64748b;">Belum ada komentar.</div>
+                <div class="detail-forum-komentar-item" style="color:#64748b;">Belum ada Respon.</div>
             @endforelse
         </div>
         @if(auth()->check())
         <form action="{{ route('forum-diskusi.addRespon', $forum->Id_Forum_Diskusi) }}" method="POST" class="detail-forum-komentar-form">
             @csrf
-            <textarea name="Deskripsi" rows="3" placeholder="Tulis komentar..." required></textarea>
+            <textarea name="Deskripsi" rows="3" placeholder="Tulis Respon atau komentar..." required></textarea>
             <button type="submit">Kirim</button>
         </form>
         @endif
     </div>
-    <a href="{{ route('forum-diskusi.index') }}" class="btn btn-secondary mt-3">Kembali ke Forum</a>
+   
 </div>
 @endsection

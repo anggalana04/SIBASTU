@@ -15,6 +15,11 @@
             @if($mahasiswa)
                 @method('PUT')
             @endif
+            @if(session('success'))
+                <div class="alert alert-success" style="background:#d1f7d6;color:#176b2c;border:2px solid #34c759;padding:1rem 1.2rem;border-radius:7px;margin-bottom:1.2rem;text-align:center;">
+                    {{ session('success') }}
+                </div>
+            @endif
             @if(session('error'))
                 <div class="alert alert-danger" style="background:#ffeaea;color:#b91c1c;border:1.5px solid #f87171;padding:1rem 1.2rem;border-radius:7px;margin-bottom:1.2rem;text-align:center;">
                     {{ session('error') }}
@@ -33,35 +38,35 @@
                 <div class="form-col">
                     <div class="form-group">
                         <label>NIM</label>
-                        <input type="text" name="NIM" value="{{ old('NIM', $mahasiswa?->NIM) }}" required>
+                        <input type="text" name="NIM" value="{{ old('NIM', $mahasiswa?->NIM) }}" required @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Nama Mahasiswa</label>
-                        <input type="text" name="Nama_Mahasiswa" value="{{ old('Nama_Mahasiswa', $mahasiswa?->Nama_Mahasiswa) }}" required>
+                        <input type="text" name="Nama_Mahasiswa" value="{{ old('Nama_Mahasiswa', $mahasiswa?->Nama_Mahasiswa) }}" required @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Universitas</label>
-                        <input type="text" name="Universitas" value="{{ old('Universitas', $mahasiswa?->Universitas) }}">
+                        <input type="text" name="Universitas" value="{{ old('Universitas', $mahasiswa?->Universitas) }}" @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Jurusan</label>
-                        <input type="text" name="Jurusan" value="{{ old('Jurusan', $mahasiswa?->Jurusan) }}" required>
+                        <input type="text" name="Jurusan" value="{{ old('Jurusan', $mahasiswa?->Jurusan) }}" required @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Semester</label>
-                        <input type="number" name="Semester" value="{{ old('Semester', $mahasiswa?->Semester) }}">
+                        <input type="number" name="Semester" value="{{ old('Semester', $mahasiswa?->Semester) }}" @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Alamat</label>
-                        <input type="text" name="Alamat" value="{{ old('Alamat', $mahasiswa?->Alamat) }}">
+                        <input type="text" name="Alamat" value="{{ old('Alamat', $mahasiswa?->Alamat) }}" @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>No Hp</label>
-                        <input type="text" name="No_hp" value="{{ old('No_hp', $mahasiswa?->No_hp) }}">
+                        <input type="text" name="No_hp" value="{{ old('No_hp', $mahasiswa?->No_hp) }}" @if($mahasiswa) readonly disabled @endif>
                     </div>
                     <div class="form-group">
                         <label>Pilih Korwil</label>
-                        <select name="Id_Korwil" class="styled-select" required>
+                        <select name="Id_Korwil" class="styled-select" required @if($mahasiswa) readonly disabled @endif>
                             <option value="">-- Pilih Korwil --</option>
                             @foreach(\App\Models\Korwil::orderBy('Nama_Korwil')->get() as $korwil)
                                 <option value="{{ $korwil->Id_Korwil }}" {{ old('Id_Korwil', $mahasiswa?->Id_Korwil) == $korwil->Id_Korwil ? 'selected' : '' }}>{{ $korwil->Nama_Korwil }}</option>

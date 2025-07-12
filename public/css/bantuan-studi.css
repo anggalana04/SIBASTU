@@ -1,27 +1,81 @@
+/* Grid layout for bantuan-studi page */
+.bantuan-studi-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    gap: 2.5rem;
+}
+.bantuan-studi-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    justify-content: center;
+}
+.bantuan-studi-margin-top {
+    margin-top: 2.5rem;
+}
+.bantuan-studi-vertical-center {
+    width: 100%;
+    max-width: 1600px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.bantuan-studi-wide-card {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
 /* Modern dashboard style for Bantuan Studi management, matching attached UI */
+
 body,
 html {
     background: #f8fafc;
     font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    height: 100%;
 }
 
+.bantuan-studi-vertical-center {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
 .main-content {
-    max-width: 1200px;
-    margin: 2.5rem auto;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
     padding: 0;
     background: none;
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 2.5rem 2.5rem;
+    box-sizing: border-box;
+    display: block;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .main-content {
+        max-width: 100vw;
+        padding: 1rem 1vw 1.5rem 1vw;
         grid-template-columns: 1fr;
         gap: 1.2rem;
-        padding: 0.5rem;
     }
 }
 
@@ -30,10 +84,16 @@ html {
     border-radius: 18px;
     box-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
     padding: 2.2rem 2rem 1.5rem 2rem;
-    margin: 0;
+    margin: 0 auto 2.5rem auto;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    min-width: 0;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    align-items: stretch;
 }
 
 .dashboard-card h2 {
@@ -171,8 +231,13 @@ html {
     padding: 0;
     margin-bottom: 0;
     width: 100%;
+    max-width: 1200px;
     border-collapse: collapse;
     font-size: 1rem;
+    min-width: 0;
+    overflow-x: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dashboard-schedule th,
@@ -192,20 +257,44 @@ html {
     border-bottom: none;
 }
 
-@media (max-width: 900px) {
 
-    .dashboard-card,
-    .dashboard-notes,
-    .dashboard-schedule {
-        padding: 1.2rem 0.7rem;
+@media (max-width: 1300px) {
+    .dashboard-card, .dashboard-schedule {
+        max-width: 98vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard-card, .dashboard-schedule {
+        max-width: 100vw;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
 
 @media (max-width: 600px) {
+    .dashboard-card, .dashboard-schedule {
+        max-width: 100vw;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
+}
+    }
+}
 
+@media (max-width: 600px) {
     .dashboard-card,
     .dashboard-notes,
     .dashboard-schedule {
         padding: 0.7rem 0.2rem;
+    }
+    .dashboard-card {
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .dashboard-schedule {
+        width: 100vw;
+        max-width: 100vw;
+        min-width: 350px;
     }
 }

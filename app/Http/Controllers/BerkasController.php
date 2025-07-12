@@ -87,6 +87,32 @@ class BerkasController extends Controller
         return redirect()->route('mahasiswa.upload-berkas')->with('success', 'Berkas uploaded successfully.');
     }
 
+    public function reupload(Request $request)
+    {
+        $user = Auth::user();
+        $berkas = Berkas::where('Id_Mahasiswa', $user->Id_Mahasiswa)->first();
+        if ($berkas) {
+            // Delete validasi related to this berkas
+            Validasi::where('Id_Berkas', $berkas->Id_Berkas)->delete();
+            // Delete berkas files from storage
+            foreach ([
+                'Lampiran_aktifkuliah',
+                'Lampiran_kpm',
+                'Lampiran_ktp',
+                'Lampiran_dns',
+                'Lampiran_kk',
+                'Lampiran_rekomendasi'
+            ] as $fileField) {
+                if ($berkas->$fileField) {
+                    \Storage::disk('public')->delete($berkas->$fileField);
+                }
+            }
+            // Delete the berkas record
+            $berkas->delete();
+        }
+        return redirect()->route('mahasiswa.upload-berkas')->with('success', 'Silakan upload ulang berkas Anda.');
+    }
+
     public function edit($id)
     {
         $berkas = Berkas::findOrFail($id);

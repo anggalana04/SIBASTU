@@ -22,44 +22,44 @@
                     @endphp
                     @if($user && $user->role === 'mahasiswa')
                         <ul>
-                            <li><a href="/mahasiswa/dashboard" class="@if(request()->is('mahasiswa/dashboard')) active @endif">Dashboard</a></li>
-                            <li><a href="{{ route('mahasiswa.pendaftaran') }}" class="@if(request()->is('mahasiswa/pendaftaran')) active @endif">Pendaftaran</a></li>
-                            <li><a href="/mahasiswa/upload-berkas" class="@if(request()->is('mahasiswa/upload-berkas')) active @endif">Upload Berkas</a></li>
-                            <li><a href="/mahasiswa/informasi-pemberian" class="@if(request()->is('mahasiswa/informasi-pemberian')) active @endif">Informasi Pemberian</a></li>
-                            <li><a href="/mahasiswa/forum-diskusi" class="@if(request()->is('mahasiswa/forum-diskusi*')) active @endif">Forum Diskusi</a></li>
-                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a href="/mahasiswa/dashboard" class="@if(request()->is('mahasiswa/dashboard')) active @endif">🏠 Dashboard</a></li>
+                            <li><a href="{{ route('mahasiswa.pendaftaran') }}" class="@if(request()->is('mahasiswa/pendaftaran')) active @endif">📝 Pendaftaran</a></li>
+                            <li><a href="/mahasiswa/upload-berkas" class="@if(request()->is('mahasiswa/upload-berkas')) active @endif">📤 Upload Berkas</a></li>
+                            <li><a href="/mahasiswa/informasi-pemberian" class="@if(request()->is('mahasiswa/informasi-pemberian')) active @endif">💡 Informasi Pemberian</a></li>
+                            <li><a href="/mahasiswa/forum-diskusi" class="@if(request()->is('mahasiswa/forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>
+                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @elseif($user && $user->role === 'korwil')
                         <ul>
-                            <li><a href="/korwil/dashboard" class="@if(request()->is('korwil/dashboard')) active @endif">Dashboard</a></li>
-                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">Forum Diskusi</a></li>
-                            <li><a href="/korwil/respon-diskusi" class="@if(request()->is('korwil/respon-diskusi')) active @endif">Respon Diskusi</a></li>
-                            <li><a href="/korwil/setting" class="@if(request()->is('korwil/setting')) active @endif">Setting</a></li>
-                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a href="/korwil/dashboard" class="@if(request()->is('korwil/dashboard')) active @endif">🏠 Dashboard</a></li>
+                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>
+                            <li><a href="/korwil/respon-diskusi" class="@if(request()->is('korwil/respon-diskusi')) active @endif">🗨️ Respon Diskusi</a></li>
+                            <li><a href="/korwil/setting" class="@if(request()->is('korwil/setting')) active @endif">⚙️ Setting</a></li>
+                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @elseif($user && $user->role === 'tim')
                         <ul>
-                            <li><a href="/tim/dashboard" class="@if(request()->is('tim/dashboard')) active @endif">Dashboard</a></li>
-                            <li><a href="/tim/bantuan-studi" class="@if(request()->is('tim/bantuan-studi')) active @endif">Bantuan Studi</a></li>
-                            <li><a href="/tim/data-mahasiswa" class="@if(request()->is('tim/data-mahasiswa')) active @endif">Data Mahasiswa</a></li>
-                            <li><a href="/tim/data-korwil" class="@if(request()->is('tim/data-korwil')) active @endif">Data Korwil</a></li>
-                            <li><a href="/tim/validasi-berkas" class="@if(request()->is('tim/validasi-berkas*')) active @endif">Validasi Berkas</a></li>
-                            <li><a href="/tim/informasi-pemberian" class="@if(request()->is('tim/informasi-pemberian')) active @endif">Informasi Pemberian</a></li>
-                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">Forum Diskusi</a></li>                            
-                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a href="/tim/dashboard" class="@if(request()->is('tim/dashboard')) active @endif">🏠 Dashboard</a></li>
+                            <li><a href="/tim/bantuan-studi" class="@if(request()->is('tim/bantuan-studi')) active @endif">🎓 Bantuan Studi</a></li>
+                            <li><a href="/tim/data-mahasiswa" class="@if(request()->is('tim/data-mahasiswa')) active @endif">👨‍🎓 Data Mahasiswa</a></li>
+                            <li><a href="/tim/data-korwil" class="@if(request()->is('tim/data-korwil')) active @endif">🧑 Data Korwil</a></li>
+                            <li><a href="/tim/validasi-berkas" class="@if(request()->is('tim/validasi-berkas*')) active @endif">✅ Validasi Berkas</a></li>
+                            <li><a href="/tim/informasi-pemberian" class="@if(request()->is('tim/informasi-pemberian')) active @endif">💡 Informasi Pemberian</a></li>
+                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>                            
+                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @elseif($user && $user->role === 'dinas')
                         <ul>
-                            <li><a href="/dinas/dashboard" class="@if(request()->is('dinas/dashboard')) active @endif">Dashboard</a></li>
-                            <li><a href="/dinas/laporan" class="@if(request()->is('dinas/laporan')) active @endif">Laporan</a></li>
-                            <li><a href="/dinas/laporan/pendaftaran" class="@if(request()->is('dinas/laporan/pendaftaran')) active @endif">Laporan Pendaftaran</a></li>
-                            <li><a href="/dinas/laporan/pemberian" class="@if(request()->is('dinas/laporan/pemberian')) active @endif">Laporan Pemberian</a></li>         
-                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a href="/dinas/dashboard" class="@if(request()->is('dinas/dashboard')) active @endif">🏠 Dashboard</a></li>
+                            <li><a href="/dinas/laporan" class="@if(request()->is('dinas/laporan')) active @endif">📊 Laporan</a></li>
+                            <li><a href="/dinas/laporan/pendaftaran" class="@if(request()->is('dinas/laporan/pendaftaran')) active @endif">📝 Laporan Pendaftaran</a></li>
+                            <li><a href="/dinas/laporan/pemberian" class="@if(request()->is('dinas/laporan/pemberian')) active @endif">💡 Laporan Pemberian</a></li>         
+                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @else
                         <ul>
-                            <li><a href="/dashboard" class="@if(request()->is('dashboard')) active @endif">Dashboard</a></li>
-                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a href="/dashboard" class="@if(request()->is('dashboard')) active @endif">🏠 Dashboard</a></li>
+                            <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @endif
                     <form id="logout-form" action="/logout" method="POST" style="display: none;">
@@ -68,7 +68,6 @@
                 </nav>
             </aside>
             <main class="main-content">
-                <!-- Page Content -->
                 @yield('content')
             </main>
         </div>

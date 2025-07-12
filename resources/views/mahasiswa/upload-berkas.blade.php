@@ -12,6 +12,11 @@
         }
     }
 @endphp
+@if(session('success'))
+    <div style="background:#d1f7d6;color:#176b2c;border:2px solid #34c759;padding:1rem 1.2rem;border-radius:7px;margin-bottom:1.2rem;text-align:center;">
+        {{ session('success') }}
+    </div>
+@endif
 @if($berkas)
     <div class="upload-berkas-container">
         <div class="upload-berkas-form" style="text-align:center;">

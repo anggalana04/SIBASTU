@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label>NIM/NPM</label>
-                <input type="text" value="{{ $berkas->mahasiswa->Id_Mahasiswa }}" class="form-control" readonly>
+                <input type="text" value="{{ $berkas->mahasiswa->NIM }}" class="form-control" readonly>
             </div>
         </div>
         <div class="form-row">
@@ -30,30 +30,57 @@
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label>Lampiran KHS</label>
-                @if($berkas->Lampiran_dns)
-                    <a href="{{ asset('storage/'.$berkas->Lampiran_dns) }}" target="_blank">Lihat File</a>
-                @else
-                    <span style="color:#64748b;">Belum diupload</span>
-                @endif
-            </div>
-            <div class="form-group">
-                <label>Lampiran KRS</label>
-                @if($berkas->Lampiran_aktifkuliah)
-                    <a href="{{ asset('storage/'.$berkas->Lampiran_aktifkuliah) }}" target="_blank">Lihat File</a>
-                @else
-                    <span style="color:#64748b;">Belum diupload</span>
-                @endif
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Lampiran Lain</label>
-                @if($berkas->Lampiran_kpm)
-                    <a href="{{ asset('storage/'.$berkas->Lampiran_kpm) }}" target="_blank">Lihat File</a>
-                @else
-                    <span style="color:#64748b;">Belum diupload</span>
-                @endif
+                <label>Daftar Berkas Mahasiswa</label>
+                <ul style="list-style: none; padding: 0;">
+                    <li>
+                        <b>Lampiran KHS (DNS):</b>
+                        @if($berkas->Lampiran_dns)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_dns) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                    <li>
+                        <b>Lampiran KRS (Aktif Kuliah):</b>
+                        @if($berkas->Lampiran_aktifkuliah)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_aktifkuliah) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                    <li>
+                        <b>Lampiran KPM:</b>
+                        @if($berkas->Lampiran_kpm)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_kpm) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                    <li>
+                        <b>Lampiran KTP:</b>
+                        @if($berkas->Lampiran_ktp)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_ktp) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                    <li>
+                        <b>Lampiran KK:</b>
+                        @if($berkas->Lampiran_kk)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_kk) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                    <li>
+                        <b>Lampiran Rekomendasi:</b>
+                        @if($berkas->Lampiran_rekomendasi)
+                            <a href="{{ asset('storage/'.$berkas->Lampiran_rekomendasi) }}" target="_blank">Lihat File</a>
+                        @else
+                            <span style="color:#64748b;">Belum diupload</span>
+                        @endif
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="form-row">

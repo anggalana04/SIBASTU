@@ -46,6 +46,7 @@ class ValidasiController extends Controller
         $request->validate([
             'Status_Validasi' => 'required|string',
         ]);
+        $previousStatus = $validasi->Status_Berkas;
         $validasi->Status_Berkas = $request->input('Status_Validasi');
         $validasi->Tgl_Validasi = now();
         if ($request->input('Status_Validasi') === 'ditolak') {
@@ -54,21 +55,23 @@ class ValidasiController extends Controller
             $validasi->Catatan = null;
         }
         $validasi->save();
-        // Automatically create InformasiPemberianBantuan after validasi
-        $berkas = $validasi->Id_Berkas ? \App\Models\Berkas::find($validasi->Id_Berkas) : null;
-        $mahasiswa = $validasi->Id_Mahasiswa ? \App\Models\Mahasiswa::find($validasi->Id_Mahasiswa) : null;
-        // Cari jenis bantuan dari master (bantuan_studi), bukan relasi ke mahasiswa
-        $bantuan = \App\Models\BantuanStudi::first(); // Ambil jenis bantuan default/master
-        $Id_Bantuan = $bantuan ? $bantuan->Id_Bantuan : null;
-        if ($berkas && $mahasiswa) {
-            \App\Models\InformasiPemberianBantuan::create([
-                'Id_Bantuan' => $Id_Bantuan,
-                'Id_Mahasiswa' => $mahasiswa->Id_Mahasiswa,
-                'Id_Korwil' => $mahasiswa->Id_Korwil,
-                'Status_Bantuan' => 'proses',
-                'Tgl_Penyaluran' => null,
-                'Keterangan' => null,
-            ]);
+
+        // Only create InformasiPemberianBantuan if status is changed to 'terverifikasi' and was not already 'terverifikasi'
+        if ($previousStatus !== 'terverifikasi' && $request->input('Status_Validasi') === 'terverifikasi') {
+            $berkas = $validasi->Id_Berkas ? \App\Models\Berkas::find($validasi->Id_Berkas) : null;
+            $mahasiswa = $validasi->Id_Mahasiswa ? \App\Models\Mahasiswa::find($validasi->Id_Mahasiswa) : null;
+            $bantuan = \App\Models\BantuanStudi::first();
+            $Id_Bantuan = $bantuan ? $bantuan->Id_Bantuan : null;
+            if ($berkas && $mahasiswa) {
+                \App\Models\InformasiPemberianBantuan::create([
+                    'Id_Bantuan' => $Id_Bantuan,
+                    'Id_Mahasiswa' => $mahasiswa->Id_Mahasiswa,
+                    'Id_Korwil' => $mahasiswa->Id_Korwil,
+                    'Status_Bantuan' => 'proses',
+                    'Tgl_Penyaluran' => null,
+                    'Keterangan' => null,
+                ]);
+            }
         }
         return redirect()->route('validasi.index')->with('success', 'Status validasi berhasil diperbarui.');
     }

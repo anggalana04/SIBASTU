@@ -1,0 +1,334 @@
+body, .main-content {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: #f7f8fa;
+    color: #222;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 32px auto 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+    padding: 32px 32px 24px 32px;
+}
+
+h1 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    letter-spacing: -1px;
+    color: #1a202c;
+}
+
+.informasi-pemberian-form {
+    margin-bottom: 32px;
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 18px 20px 10px 20px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.03);
+}
+.informasi-pemberian-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: flex-end;
+}
+.informasi-pemberian-form-row > div {
+    flex: 1 1 160px;
+    min-width: 140px;
+}
+.form-label {
+    font-size: 0.98rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+    color: #374151;
+}
+select, input[type="text"] {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 1rem;
+    margin-bottom: 2px;
+    transition: border 0.2s;
+}
+select:focus, input[type="text"]:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+.btn.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 8px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 4px 0 rgba(37,99,235,0.07);
+    transition: background 0.18s;
+}
+.btn.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.informasi-pemberian-table-wrapper {
+    margin-bottom: 32px;
+}
+.informasi-pemberian-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px 0 rgba(0,0,0,0.04);
+    font-size: 1rem;
+}
+.informasi-pemberian-table th, .informasi-pemberian-table td {
+    padding: 13px 14px;
+    text-align: left;
+}
+.informasi-pemberian-table th {
+    background: #f3f4f6;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1.5px solid #e5e7eb;
+}
+.informasi-pemberian-table tr:nth-child(even) td {
+    background: #f9fafb;
+}
+.informasi-pemberian-table tr:hover td {
+    background: #e0e7ff;
+    transition: background 0.18s;
+}
+.informasi-pemberian-table td {
+    color: #222;
+    border-bottom: 1px solid #f1f1f1;
+}
+.informasi-pemberian-table tr:last-child td {
+    border-bottom: none;
+}
+.informasi-pemberian-table td[colspan] {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.informasi-pemberian-flex {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+.informasi-pemberian-box {
+    flex: 1 1 320px;
+    background: #f3f4f6;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.04);
+    padding: 22px 24px 18px 24px;
+    min-width: 260px;
+    margin-bottom: 0;
+}
+.box-title {
+    font-size: 1.13rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1e293b;
+}
+.informasi-pemberian-box ul {
+    padding-left: 18px;
+    margin: 0;
+    color: #374151;
+    font-size: 1rem;
+}
+.informasi-pemberian-box li {
+    margin-bottom: 7px;
+    line-height: 1.6;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+.btn.btn-danger {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 8px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 4px 0 rgba(239,68,68,0.07);
+    transition: background 0.18s;
+    margin-right: 12px;
+}
+.btn.btn-danger:hover {
+    background: #b91c1c;
+}
+.mt-2 {
+    margin-top: 0.7rem;
+    color: #374151;
+    font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+    .main-content {
+        padding: 14px 4px 10px 4px;
+    }
+    .informasi-pemberian-form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .informasi-pemberian-flex {
+        flex-direction: column;
+        gap: 14px;
+    }
+    .informasi-pemberian-box {
+        padding: 14px 10px 10px 10px;
+    }
+}
+/* Table styling for informasi pemberian bantuan */
+.informasi-pemberian-table-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0 2.5rem 0;
+}
+.informasi-pemberian-table {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0,0,0,0.03);
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1.07rem;
+    overflow-x: auto;
+    margin: 0 auto;
+    transition: box-shadow 0.2s;
+}
+.informasi-pemberian-table th,
+.informasi-pemberian-table td {
+    padding: 1.1rem 1.3rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    font-weight: 500;
+    background: none;
+    transition: background 0.2s;
+}
+.informasi-pemberian-table th {
+    background: #f8fafc;
+    color: #2563eb;
+    font-weight: 700;
+    border-top: none;
+}
+.informasi-pemberian-table tr:last-child td {
+    border-bottom: none;
+}
+.informasi-pemberian-table tbody tr:nth-child(even) td {
+    background: #f6f8fa;
+}
+.informasi-pemberian-table tbody tr:hover td {
+    background: #e8f0fe;
+    color: #1746a2;
+    cursor: pointer;
+}
+.informasi-pemberian-table thead tr:first-child th:first-child {
+    border-top-left-radius: 18px;
+}
+.informasi-pemberian-table thead tr:first-child th:last-child {
+    border-top-right-radius: 18px;
+}
+.informasi-pemberian-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 18px;
+}
+.informasi-pemberian-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 18px;
+}
+.informasi-pemberian-table th,
+.informasi-pemberian-table td {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+.informasi-pemberian-table th {
+    background: #f1f5f9;
+    color: #2563eb;
+    font-weight: 600;
+}
+.informasi-pemberian-table tr:last-child td {
+    border-bottom: none;
+}
+
+.informasi-pemberian-mhs-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f8fa;
+    padding: 2rem 0;
+}
+.informasi-pemberian-mhs-box {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0,0,0,0.03);
+    padding: 2.5rem 2.2rem 2rem 2.2rem;
+    max-width: 480px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+.informasi-pemberian-mhs-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+.informasi-pemberian-mhs-message {
+    font-size: 1.08rem;
+    color: #222e3a;
+    text-align: center;
+    width: 100%;
+}
+.informasi-pemberian-mhs-list {
+    margin: 1.2rem 0 0.7rem 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 1.04rem;
+}
+.informasi-pemberian-mhs-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.informasi-pemberian-mhs-keterangan {
+    background: #f1f5f9;
+    color: #176b2c;
+    border-left: 4px solid #34c759;
+    border-radius: 7px;
+    padding: 0.9rem 1.1rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    text-align: left;
+}
+@media (max-width: 600px) {
+    .informasi-pemberian-mhs-box {
+        padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+    }
+    .informasi-pemberian-mhs-title {
+        font-size: 1.3rem;
+    }
+}
