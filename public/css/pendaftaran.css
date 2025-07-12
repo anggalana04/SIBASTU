@@ -7,6 +7,8 @@
     align-items: stretch;
     justify-content: flex-start;
     width: 100%;
+    margin-left: 2.2rem;
+    
 }
 
 .pendaftaran-main {
@@ -19,8 +21,9 @@
     background: none;
     box-shadow: none;
     border-radius: 0;
-    margin: 0;
+    margin: 1rem;
     padding: 0;
+    min-height: 100vh;
 }
 
 .pendaftaran-form {

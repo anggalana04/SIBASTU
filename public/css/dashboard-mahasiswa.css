@@ -3,22 +3,53 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    /* Change from center to flex-start to align content closer to sidebar */
+    /* Add left padding to match sidebar card radius, but keep it minimal */
+    padding-left: 0.5rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .dashboard-mhs-main-wrapper {
+        align-items: stretch;
+        padding-left: 0.1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-mhs-main-wrapper {
+        padding-left: 0;
+    }
 }
 
 /* Stepper container: fix width to prevent overflow */
 .dashboard-mhs-stepper-container {
     max-width: 700px;
     width: 100%;
-    margin: 2.5rem auto 0 auto;
+    margin: 2.5rem 0 0 0.2rem;
+    /* Remove auto and set small left margin to bring stepper closer to sidebar */
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0, 0, 0, 0.03);
     padding: 2.5rem 2.2rem 2rem 2.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+@media (max-width: 800px) {
+    .dashboard-mhs-stepper-container {
+        margin: 1.2rem 0 0 0.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-mhs-stepper-container {
+        margin: 0.5rem 0 0 0;
+    }
+}
+
 .step-circle {
     width: 2.2rem;
     height: 2.2rem;
@@ -56,41 +87,56 @@
     margin: 2.5rem auto 2.5rem auto;
     background: #f6f8fa;
     border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(37,99,235,0.06);
+    box-shadow: 0 2px 12px rgba(37, 99, 235, 0.06);
     padding: 2.2rem 2rem 1.7rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
+
 .dashboard-mhs-welcome-title {
     font-size: 2.1rem;
     font-weight: 800;
     color: #2563eb;
     margin-bottom: 1.1rem;
     letter-spacing: 0.5px;
+    margin-top: 1.2rem;
 }
+
 .dashboard-mhs-welcome-desc {
     font-size: 1.08rem;
     color: #222e3a;
     line-height: 1.7;
     max-width: 520px;
+    margin-top: 0.7rem;
+}
+
+/* Ensure both the welcome title and welcome desc are horizontally centered in the main content area */
+.dashboard-mhs-welcome-title,
+.dashboard-mhs-welcome-desc {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 /* Footer stepper section */
 .dashboard-mhs-footer {
-    width: 100vw;
+    width: 80vw;
     background: #f9fafb;
     padding: 0 0 2.5rem 0;
     margin-top: 2.5rem;
 }
+
 /* Current step indicator */
 .dashboard-mhs-step.current {
     background: #f1f5fd;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.07);
     position: relative;
 }
+
 .dashboard-mhs-step.current .step-circle {
     border: 2.5px solid #2563eb;
     background: #fff;
@@ -106,18 +152,20 @@
     text-align: center;
     line-height: 1;
 }
+
 /* Modern minimalist stepper for mahasiswa dashboard */
 .dashboard-mhs-stepper-container {
     max-width: 600px;
     margin: 2.5rem auto 0 auto;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0, 0, 0, 0.03);
     padding: 2.5rem 2.2rem 2rem 2.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .dashboard-mhs-title {
     font-size: 2rem;
     font-weight: 800;
@@ -126,6 +174,7 @@
     letter-spacing: 0.5px;
     text-align: center;
 }
+
 /* Stepper horizontal layout */
 /* Stepper horizontal layout - fix for 4 steps overlap */
 .dashboard-mhs-stepper {
@@ -137,6 +186,7 @@
     align-items: flex-start;
     position: relative;
 }
+
 .dashboard-mhs-step {
     display: flex;
     flex-direction: column;
@@ -150,6 +200,7 @@
     background: none;
     box-shadow: none;
 }
+
 .dashboard-mhs-step:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -162,9 +213,11 @@
     z-index: 0;
     transform: translateX(50%);
 }
+
 .dashboard-mhs-step:last-child::after {
     display: none;
 }
+
 .step-circle {
     width: 2.2rem;
     height: 2.2rem;
@@ -180,10 +233,12 @@
     transition: background 0.2s, color 0.2s;
     margin-bottom: 0.5rem;
 }
+
 .dashboard-mhs-step.done .step-circle {
     background: #2563eb;
     color: #fff;
 }
+
 .step-label {
     font-size: 1.1rem;
     font-weight: 700;
@@ -191,12 +246,14 @@
     margin-bottom: 0.2rem;
     text-align: center;
 }
+
 .step-desc {
     font-size: 0.98rem;
     color: #64748b;
     margin-bottom: 0.2rem;
     text-align: center;
 }
+
 .step-status {
     margin-top: 0.3rem;
     font-size: 0.97rem;
@@ -205,20 +262,24 @@
     border-radius: 6px;
     display: inline-block;
 }
+
 @media (max-width: 900px) {
     .dashboard-mhs-stepper {
         gap: 1.2rem;
     }
+
     .dashboard-mhs-step {
         min-width: 90px;
         max-width: 120px;
     }
 }
+
 @media (max-width: 600px) {
     .dashboard-mhs-stepper {
         flex-direction: column;
         gap: 1.2rem;
     }
+
     .dashboard-mhs-step {
         flex-direction: row;
         align-items: flex-start;
@@ -226,6 +287,7 @@
         max-width: unset;
         gap: 1.2rem;
     }
+
     .dashboard-mhs-step:not(:last-child)::after {
         content: '';
         position: absolute;
@@ -237,54 +299,67 @@
         z-index: 0;
         transform: none;
     }
+
     .step-circle {
         width: 1.5rem;
         height: 1.5rem;
         font-size: 0.95rem;
         margin-bottom: 0;
     }
-    .step-label, .step-desc {
+
+    .step-label,
+    .step-desc {
         text-align: left;
     }
 }
+
 .step-status-terverifikasi {
     background: #d1f7d6;
     color: #176b2c;
     border: 1.5px solid #34c759;
 }
+
 .step-status-menunggu_verifikasi {
     background: #f1f5f9;
     color: #2563eb;
     border: 1.5px solid #2563eb;
 }
+
 .step-status-ditolak {
     background: #ffeaea;
     color: #b91c1c;
     border: 1.5px solid #f87171;
 }
+
 .step-status-disalurkan {
     background: #d1f7d6;
     color: #176b2c;
     border: 1.5px solid #34c759;
 }
+
 .step-status-gagal {
     background: #ffeaea;
     color: #b91c1c;
     border: 1.5px solid #f87171;
 }
+
 @media (max-width: 600px) {
     .dashboard-mhs-stepper-container {
         padding: 1.2rem 0.7rem 1.2rem 0.7rem;
     }
+
     .dashboard-mhs-title {
         font-size: 1.3rem;
     }
+
     .dashboard-mhs-stepper {
         gap: 1.2rem;
     }
+
     .dashboard-mhs-step {
         gap: 0.7rem;
     }
+
     .step-circle {
         width: 1.5rem;
         height: 1.5rem;

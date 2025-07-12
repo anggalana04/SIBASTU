@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/informasi-pemberian.css') }}">
+<link rel="stylesheet" href="{{ asset('css/informasi-pemberian-show.css') }}">
 <div class="informasi-pemberian-detail-container modern-dashboard" style="padding:32px 0;display:flex;flex-direction:column;align-items:center;">
     <h1 class="dashboard-title" style="text-align:center;">Final Decision: Informasi Pemberian Bantuan</h1>
     <div class="dashboard-top-row flex-row" style="display:flex;gap:24px;align-items:flex-start;justify-content:center;width:100%;max-width:1200px;">

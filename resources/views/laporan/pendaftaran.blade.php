@@ -15,25 +15,34 @@
                     <th>Korwil</th>
                     <th>Tanggal Pendaftaran</th>
                     <th>Status Berkas</th>
-           
                 </tr>
             </thead>
             <tbody>
                 @foreach($pendaftaran as $val)
                     <tr>
-                        <td>{{ $val->mahasiswa->Nama_Mahasiswa ?? '-' }}</td>
+                        <td><strong>{{ $val->mahasiswa->Nama_Mahasiswa ?? '-' }}</strong></td>
                         <td>{{ $val->mahasiswa->NIM ?? '-' }}</td>
                         <td>{{ $val->mahasiswa->Jurusan ?? '-' }}</td>
                         <td>{{ $val->mahasiswa->Universitas ?? '-' }}</td>
                         <td>{{ $val->mahasiswa->korwil->Nama_Korwil ?? '-' }}</td>
                         <td>{{ optional($val->berkas->created_at ?? null)->format('d-m-Y') }}</td>
-                        <td>{{ $val->Status_Berkas }}</td>
-                       
+                        <td>
+                            @php
+                                $status = strtolower($val->Status_Berkas);
+                                $badgeClass = match($status) {
+                                    'diterima' => 'badge-success',
+                                    'ditolak' => 'badge-danger',
+                                    'diproses' => 'badge-warning',
+                                    default => 'badge-secondary',
+                                };
+                            @endphp
+                            <span class="status-badge {{ $badgeClass }}">{{ ucfirst($val->Status_Berkas) }}</span>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div>{{ $pendaftaran->links() }}</div>
+        <div class="pagination">{{ $pendaftaran->links() }}</div>
     </div>
 </div>
 @endsection

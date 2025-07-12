@@ -43,8 +43,9 @@
                             <li><a href="/tim/bantuan-studi" class="@if(request()->is('tim/bantuan-studi')) active @endif">🎓 Bantuan Studi</a></li>
                             <li><a href="/tim/data-mahasiswa" class="@if(request()->is('tim/data-mahasiswa')) active @endif">👨‍🎓 Data Mahasiswa</a></li>
                             <li><a href="/tim/data-korwil" class="@if(request()->is('tim/data-korwil')) active @endif">🧑 Data Korwil</a></li>
-                            <li><a href="/tim/validasi-berkas" class="@if(request()->is('tim/validasi-berkas*')) active @endif">✅ Validasi Berkas</a></li>
-                            <li><a href="/tim/informasi-pemberian" class="@if(request()->is('tim/informasi-pemberian')) active @endif">💡 Informasi Pemberian</a></li>
+                            <li><a href="/tim/validasi-berkas" class="@if(request()->is('tim/validasi-berkas*')) active @endif">✅ Berkas</a></li>
+                            <li><a href="/tim/informasi-pemberian" class="@if(request()->is('tim/informasi-pemberian')) active @endif">💡 Pemberian</a></li>
+                            <li><a href="/tim/akun" class="@if(request()->is('tim/akun*')) active @endif">🔑 Manajemen Akun</a></li>
                             <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>                            
                             <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>

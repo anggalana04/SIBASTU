@@ -92,6 +92,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/tim/pengumuman-bantuan-studi/{id}/edit', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'edit'])->name('tim.pengumuman-bantuan-studi.edit');
         Route::put('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'update'])->name('tim.pengumuman-bantuan-studi.update');
         Route::delete('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'destroy'])->name('tim.pengumuman-bantuan-studi.destroy');
+
+        // Tim Akun Management
+        Route::prefix('akun')->group(function () {
+            Route::get('/', [\App\Http\Controllers\AkunController::class, 'index'])->name('tim.akun.index');
+            Route::get('/create', [\App\Http\Controllers\AkunController::class, 'create'])->name('tim.akun.create');
+            Route::post('/', [\App\Http\Controllers\AkunController::class, 'store'])->name('tim.akun.store');
+            Route::get('/{id}/edit', [\App\Http\Controllers\AkunController::class, 'edit'])->name('tim.akun.edit');
+            Route::put('/{id}', [\App\Http\Controllers\AkunController::class, 'update'])->name('tim.akun.update');
+            Route::delete('/{id}', [\App\Http\Controllers\AkunController::class, 'destroy'])->name('tim.akun.destroy');
+        });
     });
 
     // Laporan routes for Admin Dinas
