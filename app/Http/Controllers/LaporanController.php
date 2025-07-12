@@ -33,7 +33,8 @@ class LaporanController extends Controller
     {
         $bantuan = InformasiPemberianBantuan::where('Status_Bantuan', 'disalurkan')
             ->with([
-                'mahasiswa:Id_Mahasiswa,Nama_Mahasiswa,NIM',
+                'mahasiswa.korwil:Id_Korwil,Nama_Korwil',
+                'mahasiswa:Id_Mahasiswa,Nama_Mahasiswa,NIM,Id_Korwil',
                 'bantuanStudi:Id_Bantuan,Jenis_Bantuan,Nominal,Periode_Bantuan,Tahun_Penerimaan',
                 'korwil:Id_Korwil,Nama_Korwil'
             ])

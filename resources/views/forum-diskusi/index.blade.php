@@ -4,14 +4,15 @@
     <link rel="stylesheet" href="{{ asset('css/forum-diskusi.css') }}">
 
     <div class="forum-twitter-header">
-        <h1>Forum Diskusi</h1>
+        <h1>FORUM DISKUSI</h1>
         <a href="{{ route('forum-diskusi.create') }}" class="btn-primary btn-forum-create">Buat Forum</a>
     </div>
 
     <div class="forum-twitter-feed">
         @if($forums->isEmpty())
-            <div class="forum-twitter-empty" style="text-align:center;padding:2rem;color:#2563eb;font-weight:500;">
-                belum ada data, yu kita diskusi!
+            <div class="forum-twitter-empty" style="text-align:center;padding:2rem;">
+                <img src="\image\FAFAFA.png" alt="Data kosong" style="max-width:300px; margin: 0 auto 1rem auto; display:block;">
+                <div style="color:#2563eb;font-weight:500;">belum ada data, yu kita diskusi!</div>
             </div>
         @else
             @foreach($forums as $forum)

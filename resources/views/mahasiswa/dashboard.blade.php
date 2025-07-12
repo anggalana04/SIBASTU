@@ -14,12 +14,12 @@
     if($informasi) $step = 5;
 @endphp
 <div class="dashboard-mhs-main-wrapper">
-    <div class="dashboard-mhs-welcome-container">
+    
         <h1 class="dashboard-mhs-welcome-title">Selamat Datang di SIBASTU!</h1>
         <div class="dashboard-mhs-welcome-desc">
             SIBASTU (Sistem Informasi Bantuan Studi) adalah platform digital untuk memudahkan mahasiswa dalam mengajukan bantuan dana studi secara transparan, mudah, dan terintegrasi. Silakan lengkapi data, upload berkas, dan pantau proses pengajuan Anda melalui dashboard ini.
         </div>
-    </div>
+    
     <footer class="dashboard-mhs-footer">
         <div class="dashboard-mhs-stepper-container">
             <h2 class="dashboard-mhs-title">Pengajuan Bantuan Dana</h2>

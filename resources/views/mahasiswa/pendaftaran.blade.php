@@ -10,7 +10,7 @@
 <div class="pendaftaran-layout">
     <main class="pendaftaran-main">
         <form action="{{ $mahasiswa ? route('mahasiswa.update', $mahasiswa->Id_Mahasiswa) : route('mahasiswa.store') }}" method="POST" class="pendaftaran-form" enctype="multipart/form-data">
-            <h1 class="pendaftaran-title">Pendaftaran</h1>
+            <h1 class="pendaftaran-title">PENDAFTARAN</h1>
             @csrf
             @if($mahasiswa)
                 @method('PUT')

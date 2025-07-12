@@ -19,7 +19,7 @@ class InformasiPemberianBantuan extends Model
         'Tgl_Penyaluran',
         'Keterangan',
     ];
-
+    
     protected static function boot()
     {
         parent::boot();
@@ -34,7 +34,7 @@ class InformasiPemberianBantuan extends Model
             }
         });
     }
-
+    
     public function bantuanStudi()
     {
         return $this->belongsTo(BantuanStudi::class, 'Id_Bantuan', 'Id_Bantuan');
@@ -42,5 +42,10 @@ class InformasiPemberianBantuan extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'Id_Mahasiswa', 'Id_Mahasiswa');
+    }
+    
+    public function korwil()
+    {
+        return $this->belongsTo(\App\Models\Korwil::class, 'Id_Korwil', 'Id_Korwil');
     }
 }
