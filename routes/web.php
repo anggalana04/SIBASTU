@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\ProfileController;
@@ -88,6 +89,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'update'])->name('tim.pengumuman-bantuan-studi.update');
         Route::delete('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'destroy'])->name('tim.pengumuman-bantuan-studi.destroy');
     });
+
+    // Laporan routes for Admin Dinas
+    Route::get('pendaftaran', [\App\Http\Controllers\LaporanController::class, 'laporanPendaftaran'])->name('laporan.pendaftaran');
+    Route::get('bantuan', [\App\Http\Controllers\LaporanController::class, 'laporanBantuan'])->name('laporan.bantuan');
 
     // Mahasiswa & Korwil view pengumuman
     Route::get('/mahasiswa/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('mahasiswa.informasi-pemberian');

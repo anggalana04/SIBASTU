@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/detail-forum.css') }}">
-<a href="{{ route('forum-diskusi.index') }}" class="btn btn-secondary detail-forum-back" title="Kembali ke Forum" style="padding:0.4em 1em;margin:0.7em 0 0.7em 0.7em;display:inline-block;font-size:1.5rem;z-index:10;text-decoration:none;position:fixed;left:16rem;top:6rem;">◀️</a>
+<a href="{{ route('forum-diskusi.index') }}" class="btn btn-secondary detail-forum-back" title="Kembali ke Forum" style="padding:0.4em 1em;margin:0.7em 0 0.7em 0.7em;display:inline-block;font-size:1.5rem;z-index:10;text-decoration:none;position:fixed;left:1.5rem;top:1.5rem;">◀️</a>
 <div class="detail-forum-container" style="position:relative;">
     <div class="detail-forum-header">
         <div class="detail-forum-avatar">
