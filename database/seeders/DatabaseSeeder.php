@@ -51,8 +51,18 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // Seed dummy akun data
-        $this->call(AkunSeeder::class);
-        $this->call(KorwilSeeder::class);
+        // Seed tables in the correct order based on relationships
+        $this->call([
+            AkunSeeder::class,
+            KorwilSeeder::class,
+            // MahasiswaSeeder::class,
+            // BerkasSeeder::class,
+            // TimLannyJayaCerdasSeeder::class,
+            // InformasiPemberianBantuanSeeder::class,
+            // ValidasiSeeder::class,
+            // ForumDiskusiSeeder::class,
+            // ResponDiskusiSeeder::class,
+            PengumumanBantuanStudiSeeder::class,
+        ]);
     }
 }

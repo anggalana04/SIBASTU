@@ -1,5 +1,40 @@
 @extends('layouts.app')
 @section('content')
-<h1>Laporan Pendaftaran Dinas</h1>
-<p>Halaman laporan pendaftaran untuk dinas.</p>
+<link rel="stylesheet" href="{{ asset('css/laporan-pendaftaran.css') }}">
+<div class="laporan-container">
+    <h2>Laporan Pendaftaran</h2>
+    <button class="btn-export">Export Data</button>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Status Pendaftaran</th>
+                    <th>Tanggal Pendaftaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Mahasiswa 1</td>
+                    <td><span class="badge badge-success">Terverifikasi</span></td>
+                    <td>2025-07-13</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mahasiswa 2</td>
+                    <td><span class="badge badge-warning">Menunggu</span></td>
+                    <td>2025-07-12</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Mahasiswa 3</td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
+                    <td>2025-07-11</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection

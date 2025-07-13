@@ -43,13 +43,6 @@ return new class extends Migration {
             $table->foreign('Id_Korwil')->references('Id_Korwil')->on('korwil')->onDelete('set null'); // Add FK constraint
         });
 
-        // 3. Universitas
-        Schema::create('universitas', function (Blueprint $table) {
-            $table->string('Id_Universitas', 10)->primary();
-            $table->string('Nama', 100);
-            $table->text('Alamat')->nullable();
-        });
-
         // 4. Berkas
         Schema::create('berkas', function (Blueprint $table) {
             $table->string('Id_Berkas', 10)->primary();
@@ -138,9 +131,8 @@ return new class extends Migration {
             $table->id('id');
             $table->string('judul', 150)->nullable();
             $table->text('isi')->nullable();
-            $table->date('tanggal_mulai')->nullable();
-            $table->date('tanggal_selesai')->nullable();
-            $table->text('syarat')->nullable();
+            $table->json('syarat')->nullable();
+            $table->json('jadwal')->nullable();
             $table->timestamps();
         });
     }
@@ -149,7 +141,6 @@ return new class extends Migration {
     {
         Schema::dropIfExists('akun');
         Schema::dropIfExists('mahasiswa');
-        Schema::dropIfExists('universitas');
         Schema::dropIfExists('berkas');
         Schema::dropIfExists('tim_lanny_jaya_cerdas');
         Schema::dropIfExists('korwil');

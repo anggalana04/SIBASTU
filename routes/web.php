@@ -8,10 +8,8 @@ use App\Http\Controllers\ValidasiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ForumDiskusiController;
 use App\Http\Controllers\TimBantuanStudiController;
-
-// Dinas routes
-
-
+use App\Http\Controllers\MahasiswaPengumumanController;
+use App\Http\Controllers\TimPengumumanController;
 
 
 Route::get('/', function () {
@@ -76,7 +74,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'update'])->name('validasi.update');
         Route::get('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'show'])->name('validasi.show');
 
-        Route::get('/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('tim.informasi-pemberian');
+
+        Route::get('/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'timIndex'])->name('tim.informasi-pemberian');
         Route::view('/forum-diskusi', 'tim.forum-diskusi')->name('tim.forum-diskusi');
 
         Route::get('/bantuan-studi', [\App\Http\Controllers\TimBantuanStudiController::class, 'index'])->name('tim.bantuan-studi');
@@ -92,7 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/tim/pengumuman-bantuan-studi', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'store'])->name('tim.pengumuman-bantuan-studi.store');
         Route::get('/tim/pengumuman-bantuan-studi/{id}/edit', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'edit'])->name('tim.pengumuman-bantuan-studi.edit');
         Route::put('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'update'])->name('tim.pengumuman-bantuan-studi.update');
-        Route::delete('/tim/pengumuman-bantuan-studi/{id}', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'destroy'])->name('tim.pengumuman-bantuan-studi.destroy');
+        Route::delete('/tim/pengumuman-bantuan-studi', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'destroy'])->name('tim.pengumuman-bantuan-studi.destroy');
 
         // Tim Akun Management
         Route::prefix('akun')->group(function () {
@@ -123,6 +122,18 @@ Route::middleware('auth')->group(function () {
 
     Route::post('forum-diskusi/{id}/respon', [ForumDiskusiController::class, 'addRespon'])->name('forum-diskusi.addRespon');
     Route::post('/berkas/reupload', [App\Http\Controllers\BerkasController::class, 'reupload'])->name('berkas.reupload');
+
+    // Route for mahasiswa pengumuman
+    Route::get('/mahasiswa/informasi-pemberian', [MahasiswaPengumumanController::class, 'index'])->name('mahasiswa.pengumuman-bantuan-studi');
+
+    // Route for tim/admin pengumuman
+    Route::resource('/tim/pengumuman-bantuan-studi', TimPengumumanController::class);
+
+    // Route for updating Korwil identity
+    Route::put('/korwil/update-identity', [\App\Http\Controllers\KorwilController::class, 'updateIdentity'])->name('korwil.updateIdentity');
+
+    // Route for toggling dark mode
+    Route::post('/korwil/toggle-dark-mode', [\App\Http\Controllers\KorwilController::class, 'toggleDarkMode'])->name('korwil.toggleDarkMode');
 });
 
 require __DIR__ . '/auth.php';

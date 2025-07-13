@@ -1,0 +1,93 @@
+/* laporan-pemberian.css - Consistent style with laporan-pendaftaran */
+
+.laporan-container {
+    max-width: 1200px;
+    margin: 1rem auto 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0, 0, 0, 0.03);
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.laporan-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+}
+
+.laporan-container .btn-export {
+    background: #059669;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 7px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    transition: background 0.2s;
+}
+
+.laporan-container .btn-export:hover {
+    background: #047857;
+}
+
+.table {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.10), 0 1.5px 6px rgba(0, 0, 0, 0.03);
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.89rem;
+    overflow-x: auto;
+    margin: 0 auto;
+    transition: box-shadow 0.2s;
+}
+
+.table th,
+.table td {
+    padding: 1.1rem 0.8rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    font-weight: 500;
+    background: none;
+    transition: background 0.2s;
+    font-size: 0.88em;
+}
+
+.table th {
+    background: #f8fafc;
+    color: #2563eb;
+    font-weight: 700;
+    border-top: none;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:nth-child(even) td {
+    background: #f6f8fa;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}

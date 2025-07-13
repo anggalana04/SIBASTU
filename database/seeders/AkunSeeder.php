@@ -11,51 +11,33 @@ class AkunSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('akun')->insert([
-            [
-                'Id_Akun' => 'AK_001',
-                'Nama_Akun' => 'mahasiswa1',
-                'Password' => Hash::make('password123'),
-                'role' => 'mahasiswa',
-                'Id_Tim' => null,
-                'Id_Korwil' => null,
-                'Id_Mahasiswa' => 'MS_001',
+        DB::table('akun')->insert(array_map(function ($i) {
+            $roles = ['mahasiswa', 'tim', 'korwil', 'dinas'];
+            $role = $i <= 30 ? 'mahasiswa' : $roles[array_rand($roles)]; // Ensure first 30 are mahasiswa
+
+            static $mahasiswaCount = 1;
+            static $timCount = 1;
+            static $korwilCount = 1;
+            static $dinasCount = 1;
+
+            $nameSuffix = match ($role) {
+                'mahasiswa' => $mahasiswaCount++,
+                'tim' => $timCount++,
+                'korwil' => $korwilCount++,
+                'dinas' => $dinasCount++,
+            };
+
+            return [
+                'Id_Akun' => 'AKN' . str_pad($i, 3, '0', STR_PAD_LEFT),
+                'Id_Tim' => $role === 'tim' ? 'TLJ_' . str_pad($timCount - 1, 3, '0', STR_PAD_LEFT) : null,
+                'Id_Korwil' => $role === 'korwil' ? 'KW_' . str_pad($korwilCount - 1, 3, '0', STR_PAD_LEFT) : null,
+                'Id_Mahasiswa' => $role === 'mahasiswa' ? 'MHS_' . str_pad($mahasiswaCount - 1, 3, '0', STR_PAD_LEFT) : null,
+                'Nama_Akun' => $role . $nameSuffix,
+                'Password' => bcrypt('password123'),
+                'role' => $role,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'Id_Akun' => 'AK_002',
-                'Nama_Akun' => 'korwil1',
-                'Password' => Hash::make('password123'),
-                'role' => 'korwil',
-                'Id_Tim' => null,
-                'Id_Korwil' => 'KW_001',
-                'Id_Mahasiswa' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'Id_Akun' => 'AK_003',
-                'Nama_Akun' => 'tim1',
-                'Password' => Hash::make('password123'),
-                'role' => 'tim',
-                'Id_Tim' => 'TLJ_001',
-                'Id_Korwil' => null,
-                'Id_Mahasiswa' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'Id_Akun' => 'AK_004',
-                'Nama_Akun' => 'dinas1',
-                'Password' => Hash::make('password123'),
-                'role' => 'dinas',
-                'Id_Tim' => null,
-                'Id_Korwil' => null,
-                'Id_Mahasiswa' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ];
+        }, range(1, 50)));
     }
 }

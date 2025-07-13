@@ -10,8 +10,12 @@ class PengumumanBantuanStudi extends Model
     protected $fillable = [
         'judul',
         'isi',
-        'tanggal_mulai',
-        'tanggal_selesai',
         'syarat',
+        'jadwal',
+    ];
+
+    protected $casts = [
+        'syarat' => 'array',
+        'jadwal' => 'array',
     ];
 }

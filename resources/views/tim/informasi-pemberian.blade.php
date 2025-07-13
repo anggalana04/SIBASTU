@@ -1,48 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/informasi-pemberian.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tim-pengumuman.css') }}">
 <div class="main-content">
-    <h1>Manajemen Pengumuman Bantuan Studi</h1>
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    <div class="pengumuman-card-container">
-        <div class="pengumuman-card">
-            <form action="{{ route('tim.pengumuman-bantuan-studi.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="judul">Judul Pengumuman</label>
-                    <input type="text" name="judul" id="judul" class="form-control" value="{{ $pengumuman->judul ?? '' }}" required maxlength="150">
-                </div>
-                <div class="form-group">
-                    <label for="isi">Isi Pengumuman</label>
-                    <textarea name="isi" id="isi" class="form-control" rows="3">{{ $pengumuman->isi ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="syarat">Syarat & Ketentuan</label>
-                    <textarea name="syarat" id="syarat" class="form-control" rows="2">{{ $pengumuman->syarat ?? '' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal_mulai">Tanggal Mulai</label>
-                    <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ $pengumuman->tanggal_mulai ?? '' }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal_selesai">Tanggal Selesai</label>
-                    <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ $pengumuman->tanggal_selesai ?? '' }}" required>
-                </div>
-                <div class="form-actions" style="margin-top:18px;display:flex;gap:12px;">
-                    <button type="submit" class="btn btn-success">Simpan Pengumuman</button>
-                    @if(isset($pengumuman))
-                        <form action="{{ route('tim.pengumuman-bantuan-studi.destroy', $pengumuman->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus pengumuman?')">Hapus</button>
-                        </form>
-                    @endif
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="mt-5">
         <h2>Daftar Informasi Pemberian Bantuan</h2>
         <table class="table table-striped informasi-table">
@@ -66,5 +25,62 @@
             </tbody>
         </table>
     </div>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+
+    <div class="pengumuman-card-container">
+        <h1>Manajemen Pengumuman Bantuan Studi</h1>
+        <div class="pengumuman-card">
+            <form action="{{ isset($pengumuman) ? route('tim.pengumuman-bantuan-studi.update', $pengumuman->id) : route('tim.pengumuman-bantuan-studi.store') }}" method="POST">
+                @csrf
+                @if(isset($pengumuman))
+                    @method('PUT')
+                @endif
+                <div class="form-group">
+                    <label for="judul">Judul Pengumuman</label>
+                    <input type="text" name="judul" id="judul" class="form-control" value="{{ $pengumuman->judul ?? '' }}" required maxlength="150">
+                </div>
+                <div class="form-group">
+                    <label for="isi">Isi Pengumuman</label>
+                    <textarea name="isi" id="isi" class="form-control" rows="3">{{ $pengumuman->isi ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="syarat">Syarat & Ketentuan <span style="font-weight:400;font-size:0.95em;">(1 baris = 1 syarat)</span></label>
+                    <textarea name="syarat" id="syarat" class="form-control" rows="4">@if(is_array($pengumuman->syarat)){{ implode("\n", $pengumuman->syarat) }}@else{{ $pengumuman->syarat ?? '' }}@endif</textarea>
+                    @if(is_array($pengumuman->syarat) && count($pengumuman->syarat))
+                        <ul class="mt-2">
+                            @foreach($pengumuman->syarat as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="jadwal">Jadwal Penting <span style="font-weight:400;font-size:0.95em;">(1 baris = 1 jadwal, contoh: Pendaftaran Dibuka: 01 Juni 2025)</span></label>
+                    <textarea name="jadwal" id="jadwal" class="form-control" rows="4">@if(isset($pengumuman->jadwal) && is_array($pengumuman->jadwal)){{ implode("\n", $pengumuman->jadwal) }}@elseif(isset($pengumuman->jadwal)){{ $pengumuman->jadwal }}@endif</textarea>
+                    @if(isset($pengumuman->jadwal) && is_array($pengumuman->jadwal) && count($pengumuman->jadwal))
+                        <ul class="mt-2">
+                            @foreach($pengumuman->jadwal as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Simpan Pengumuman</button>
+                </div>
+            </form>
+            @if(isset($pengumuman))
+                <form action="{{ route('tim.pengumuman-bantuan-studi.destroy', $pengumuman->id) }}" method="POST" style="display:inline-block; margin-top: 0.5rem;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus pengumuman?')">Hapus</button>
+                </form>
+            @endif
+        </div>
+    </div>
+
 </div>
 @endsection

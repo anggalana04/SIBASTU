@@ -59,27 +59,34 @@
             </tbody>
         </table>
     </div>
+    @if(isset($pengumuman))
     <div class="informasi-pemberian-flex">
         <div class="informasi-pemberian-box syarat">
             <div class="box-title">Syarat & Ketentuan</div>
             <ul>
-                <li>Fotocopy KTP dan NPWP</li>
-                <li>Surat Keterangan Aktif Kuliah</li>
-                <li>Transkrip Nilai Terbaru</li>
-                <li>Proposal Studi Asli</li>
+                @if(is_array($pengumuman->syarat))
+                    @foreach($pengumuman->syarat as $item)
+                        <li>{{ $item }}</li>
+                    @endforeach
+                @elseif(is_string($pengumuman->syarat) && !empty($pengumuman->syarat))
+                    <li>{{ $pengumuman->syarat }}</li>
+                @else
+                    <li>-</li>
+                @endif
             </ul>
         </div>
+        @if(isset($pengumuman->jadwal) && is_array($pengumuman->jadwal) && count($pengumuman->jadwal))
         <div class="informasi-pemberian-box jadwal">
             <div class="box-title">Jadwal Pendaftaran dan Penyaluran</div>
             <ul>
-                <li>Pendaftaran Dibuka: 01 Juni 2025</li>
-                <li>Pendaftaran Ditutup: 20 Juni 2025</li>
-                <li>Seleksi Berkas: 21-25 Juni 2025</li>
-                <li>Pengumuman: 28 Juni 2025</li>
-                <li>Penyaluran: 01 Juli 2025</li>
+                @foreach($pengumuman->jadwal as $jadwal)
+                    <li>{{ $jadwal }}</li>
+                @endforeach
             </ul>
         </div>
+        @endif
     </div>
+    @endif
     <div class="mt-4">
         <a href="#" class="btn btn-danger">Unduh Jadwal</a>
         <div class="mt-2">Kontak Tim Lanny Jaya Cerdas: 628-xxxx-xxxx</div>
