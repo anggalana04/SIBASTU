@@ -366,3 +366,78 @@
         font-size: 0.95rem;
     }
 }
+
+/* Modern dashboard stats for Korwil */
+.dashboard-korwil-container.modern-dashboard {
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: #222;
+}
+
+.dashboard-stats-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dashboard-stat-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+    padding: 32px 32px 24px 32px;
+    min-width: 220px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+}
+
+.dashboard-stat-card:hover {
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
+}
+
+.stat-title {
+    font-size: 1.05rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .dashboard-stats-row {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        max-width: 100vw;
+    }
+
+    .dashboard-stat-card {
+        min-width: 0;
+        width: 90vw;
+        max-width: 400px;
+    }
+}

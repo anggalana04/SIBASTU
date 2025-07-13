@@ -28,6 +28,11 @@ class Berkas extends Model
         return $this->belongsTo(Mahasiswa::class, 'Id_Mahasiswa', 'Id_Mahasiswa');
     }
 
+    public function validasi()
+    {
+        return $this->hasOne(\App\Models\Validasi::class, 'Id_Berkas', 'Id_Berkas');
+    }
+
     protected static function boot()
     {
         parent::boot();

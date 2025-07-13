@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\BerkasController;
-use App\Http\Controllers\ForumDiskusiController;
-use App\Http\Controllers\ValidasiController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ValidasiController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ForumDiskusiController;
+use App\Http\Controllers\TimBantuanStudiController;
 
 // Dinas routes
 
@@ -48,7 +49,7 @@ Route::middleware('auth')->group(function () {
 
     // Korwil routes
     Route::prefix('korwil')->group(function () {
-        Route::view('/dashboard', 'korwil.dashboard')->name('korwil.dashboard');
+        Route::get('/dashboard', [\App\Http\Controllers\KorwilController::class, 'dashboard'])->name('korwil.dashboard');
         Route::view('/forum-diskusi', 'korwil.forum-diskusi')->name('korwil.forum-diskusi');
         Route::view('/respon-diskusi', 'korwil.respon-diskusi')->name('korwil.respon-diskusi');
         Route::view('/setting', 'korwil.setting')->name('korwil.setting');
@@ -56,7 +57,7 @@ Route::middleware('auth')->group(function () {
 
     // Tim routes
     Route::prefix('tim')->group(function () {
-        Route::view('/dashboard', 'tim.dashboard')->name('tim.dashboard');
+        Route::get('/dashboard', [\App\Http\Controllers\TimLannyJayaCerdasController::class, 'dashboard'])->name('tim.dashboard');
         Route::view('/bantuan-studi', 'tim.bantuan-studi')->name('tim.bantuan-studi');
         Route::get('/data-mahasiswa', [\App\Http\Controllers\MahasiswaController::class, 'index'])->name('tim.data-mahasiswa');
 
@@ -75,7 +76,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'update'])->name('validasi.update');
         Route::get('/validasi-berkas/{id}', [\App\Http\Controllers\ValidasiController::class, 'show'])->name('validasi.show');
 
-        Route::view('/informasi-pemberian', 'tim.informasi-pemberian')->name('tim.informasi-pemberian');
+        Route::get('/informasi-pemberian', [\App\Http\Controllers\PengumumanBantuanStudiController::class, 'index'])->name('tim.informasi-pemberian');
         Route::view('/forum-diskusi', 'tim.forum-diskusi')->name('tim.forum-diskusi');
 
         Route::get('/bantuan-studi', [\App\Http\Controllers\TimBantuanStudiController::class, 'index'])->name('tim.bantuan-studi');

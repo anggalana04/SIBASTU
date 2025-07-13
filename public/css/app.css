@@ -90,11 +90,9 @@ main {
     height: 83vh;
     float: none;
     box-sizing: border-box;
-    /* Card effect */
     border-radius: 18px;
     box-shadow: 0 4px 24px rgba(37, 99, 235, 0.13), 0 1.5px 6px rgba(0, 0, 0, 0.04);
     margin: 1rem 0 1rem 0.5rem;
-    /* Decrease left gap further */
     position: -webkit-sticky;
     position: sticky;
     top: 0;

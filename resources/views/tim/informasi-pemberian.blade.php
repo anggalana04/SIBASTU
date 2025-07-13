@@ -2,59 +2,69 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/informasi-pemberian.css') }}">
 <div class="main-content">
-    <h1>Informasi Pemberian Bantuan Studi</h1>
-    <form method="GET" action="#" class="informasi-pemberian-form">
-        <div class="informasi-pemberian-form-row">
-            <div>
-                <label class="form-label">Tahun</label>
-                <select name="tahun">
-                    <option value="">2024-2025</option>
-                    <option value="">2025-2026</option>
-                </select>
-            </div>
-            <div>
-                <label class="form-label">Jenis Informasi</label>
-                <select name="jenis">
-                    <option value="">Bantuan Studi</option>
-                    <option value="">Beasiswa</option>
-                </select>
-            </div>
-            <div>
-                <label class="form-label">Kuota</label>
-                <select name="kuota">
-                    <option value="">1.700.000</option>
-                    <option value="">2.000.000</option>
-                </select>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary">Tampilkan</button>
-            </div>
-        </div>
-    </form>
-    <div class="informasi-pemberian-flex">
-        <div class="informasi-pemberian-box syarat">
-            <div class="box-title">Syarat & Ketentuan</div>
-            <ul>
-                <li>Fotocopy KTP dan NPWP</li>
-                <li>Surat Keterangan Aktif Kuliah</li>
-                <li>Transkrip Nilai Terbaru</li>
-                <li>Proposal Studi Asli</li>
-            </ul>
-        </div>
-        <div class="informasi-pemberian-box jadwal">
-            <div class="box-title">Jadwal Pendaftaran dan Penyaluran</div>
-            <ul>
-                <li>Pendaftaran Dibuka: 01 Juni 2025</li>
-                <li>Pendaftaran Ditutup: 20 Juni 2025</li>
-                <li>Seleksi Berkas: 21-25 Juni 2025</li>
-                <li>Pengumuman: 28 Juni 2025</li>
-                <li>Penyaluran: 01 Juli 2025</li>
-            </ul>
+    <h1>Manajemen Pengumuman Bantuan Studi</h1>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    <div class="pengumuman-card-container">
+        <div class="pengumuman-card">
+            <form action="{{ route('tim.pengumuman-bantuan-studi.store') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="judul">Judul Pengumuman</label>
+                    <input type="text" name="judul" id="judul" class="form-control" value="{{ $pengumuman->judul ?? '' }}" required maxlength="150">
+                </div>
+                <div class="form-group">
+                    <label for="isi">Isi Pengumuman</label>
+                    <textarea name="isi" id="isi" class="form-control" rows="3">{{ $pengumuman->isi ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="syarat">Syarat & Ketentuan</label>
+                    <textarea name="syarat" id="syarat" class="form-control" rows="2">{{ $pengumuman->syarat ?? '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal_mulai">Tanggal Mulai</label>
+                    <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ $pengumuman->tanggal_mulai ?? '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal_selesai">Tanggal Selesai</label>
+                    <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ $pengumuman->tanggal_selesai ?? '' }}" required>
+                </div>
+                <div class="form-actions" style="margin-top:18px;display:flex;gap:12px;">
+                    <button type="submit" class="btn btn-success">Simpan Pengumuman</button>
+                    @if(isset($pengumuman))
+                        <form action="{{ route('tim.pengumuman-bantuan-studi.destroy', $pengumuman->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus pengumuman?')">Hapus</button>
+                        </form>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
-    <div class="mt-4">
-        <a href="#" class="btn btn-danger">Unduh Jadwal</a>
-        <div class="mt-2">Kontak Tim Lanny Jaya Cerdas: 628-xxxx-xxxx</div>
+    <div class="mt-5">
+        <h2>Daftar Informasi Pemberian Bantuan</h2>
+        <table class="table table-striped informasi-table">
+            <thead>
+                <tr>
+                    <th>Mahasiswa</th>
+                    <th>Jenis Bantuan</th>
+                    <th>Status</th>
+                    <th>Tanggal Penyaluran</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($informasiList as $info)
+                <tr>
+                    <td>{{ $info->mahasiswa->Nama_Mahasiswa ?? '-' }}</td>
+                    <td>{{ $info->bantuanStudi->Jenis_Bantuan ?? '-' }}</td>
+                    <td><span class="status-badge status-{{ $info->Status_Bantuan }}">{{ ucfirst($info->Status_Bantuan) }}</span></td>
+                    <td>{{ $info->Tgl_Penyaluran ?? '-' }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection
