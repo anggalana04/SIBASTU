@@ -7,11 +7,13 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" href="/css/app.css">
+        <link rel="icon" type="image/png" href="{{ asset('image/Lambang_Kabupaten_Lanny_Jaya__Papua-removebg-preview.png') }}">
     </head>
     <body>
         <header class="main-header">
-            <div class="header-content">
-                <h1>SIBASTU</h1>
+            <div class="app-header" style="display:flex;align-items:center;gap:18px;padding:0 24px;min-height:64px;">
+                <img src="{{ asset('image/Lambang_Kabupaten_Lanny_Jaya__Papua-removebg-preview.png') }}" alt="Logo Lanny Jaya" style="height:48px;width:auto;display:block;">
+                <span class="app-title" style="font-size:2rem;font-weight:700;color:#2563eb;">{{ config('app.name', 'SIBASTU') }}</span>
             </div>
         </header>
         <div class="container">
@@ -46,7 +48,7 @@
                             <li><a href="/tim/validasi-berkas" class="@if(request()->is('tim/validasi-berkas*')) active @endif">✅ Berkas</a></li>
                             <li><a href="/tim/informasi-pemberian" class="@if(request()->is('tim/informasi-pemberian')) active @endif">💡 Pemberian</a></li>
                             <li><a href="/tim/akun" class="@if(request()->is('tim/akun*')) active @endif">🔑 Manajemen Akun</a></li>
-                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>                            
+                            <li><a href="/forum-diskusi" class="@if(request()->is('forum-diskusi*')) active @endif">💬 Forum Diskusi</a></li>
                             <li><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">🚪 Logout</a></li>
                         </ul>
                     @elseif($user && $user->role === 'dinas')

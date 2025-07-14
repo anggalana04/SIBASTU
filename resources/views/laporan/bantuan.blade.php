@@ -3,8 +3,37 @@
 <link rel="stylesheet" href="{{ asset('css/laporan-bantuan.css') }}">
 <div class="container mt-4">
     <div class="laporan-bantuan-container">
-        <h2>Laporan Pemberian Bantuan</h2>
-        <a href="#" class="btn btn-success mb-3">Export to PDF</a>
+        <h2 style="display:flex;justify-content:space-between;align-items:center;">
+            Laporan Pemberian Bantuan
+            <a href="{{ route('laporan.bantuan.exportPdf', request()->all()) }}" class="btn btn-success" style="min-width:160px;float:right;">Export to PDF</a>
+        </h2>
+        <form method="GET" action="" class="mb-4 filter-bar" style="display:flex;gap:20px;flex-wrap:wrap;align-items:end;background:#f8fafc;padding:18px 24px 10px 24px;border-radius:10px;box-shadow:0 2px 8px 0 #e5e7eb;margin-bottom:32px;">
+            <div style="min-width:180px;">
+                <label for="periode" class="form-label" style="font-weight:500;">Periode</label>
+                <select name="periode" id="periode" class="form-control" style="border-radius:6px;">
+                    <option value="">Semua Periode</option>
+                    @foreach($periodeList as $periode)
+                        <option value="{{ $periode }}" @if(request('periode') == $periode) selected @endif>{{ $periode }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div style="min-width:180px;">
+                <label for="jenis" class="form-label" style="font-weight:500;">Jenis Bantuan</label>
+                <select name="jenis" id="jenis" class="form-control" style="border-radius:6px;">
+                    <option value="">Semua Jenis</option>
+                    @foreach($jenisList as $jenis)
+                        <option value="{{ $jenis }}" @if(request('jenis') == $jenis) selected @endif>{{ ucwords(str_replace('_',' ', $jenis)) }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div style="flex:1;min-width:220px;">
+                <label for="search" class="form-label" style="font-weight:500;">Cari</label>
+                <input type="text" name="search" id="search" class="form-control" placeholder="Nama/NIM/Periode" value="{{ request('search') }}" style="border-radius:6px;">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" style="min-width:120px;">Filter</button>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead class="table-primary">

@@ -11,11 +11,31 @@ use Illuminate\Support\Facades\Storage;
 
 class BerkasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user();
-        $berkas = Berkas::where('Id_Mahasiswa', $user->Id_Mahasiswa)->get();
-        return view('mahasiswa.berkas.index', compact('berkas'));
+        $query = Berkas::with(['mahasiswa', 'validasi']);
+        // Filtering by status validasi
+        if ($request->filled('status')) {
+            $query->whereHas('validasi', function ($q) use ($request) {
+                $q->where('Status_Berkas', $request->status);
+            });
+        }
+        // Search by nama, nim, jurusan
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->whereHas('mahasiswa', function ($q) use ($search) {
+                $q->where(function ($sub) use ($search) {
+                    $sub->where('Nama_Mahasiswa', 'like', "%$search%")
+                        ->orWhere('NIM', 'like', "%$search%")
+                        ->orWhere('Jurusan', 'like', "%$search%")
+                    ;
+                });
+            });
+        }
+        // Only show berkas that have at least one validasi (for tim validation)
+        $query->whereHas('validasi');
+        $berkasList = $query->get();
+        return view('tim.validasi-berkas.index', compact('berkasList'));
     }
 
     public function create()
@@ -95,14 +115,16 @@ class BerkasController extends Controller
             // Delete validasi related to this berkas
             Validasi::where('Id_Berkas', $berkas->Id_Berkas)->delete();
             // Delete berkas files from storage
-            foreach ([
-                'Lampiran_aktifkuliah',
-                'Lampiran_kpm',
-                'Lampiran_ktp',
-                'Lampiran_dns',
-                'Lampiran_kk',
-                'Lampiran_rekomendasi'
-            ] as $fileField) {
+            foreach (
+                [
+                    'Lampiran_aktifkuliah',
+                    'Lampiran_kpm',
+                    'Lampiran_ktp',
+                    'Lampiran_dns',
+                    'Lampiran_kk',
+                    'Lampiran_rekomendasi'
+                ] as $fileField
+            ) {
                 if ($berkas->$fileField) {
                     \Storage::disk('public')->delete($berkas->$fileField);
                 }

@@ -8,6 +8,38 @@ use App\Models\BantuanStudi;
 
 class InformasiPemberianBantuanController extends Controller
 {
+    public function index(Request $request)
+    {
+        $query = InformasiPemberianBantuan::with(['mahasiswa', 'bantuanStudi']);
+
+        // Filtering
+        if ($request->filled('periode')) {
+            $query->whereHas('bantuanStudi', function ($q) use ($request) {
+                $q->where('Periode_Bantuan', $request->periode);
+            });
+        }
+        if ($request->filled('jenis')) {
+            $query->whereHas('bantuanStudi', function ($q) use ($request) {
+                $q->where('Jenis_Bantuan', $request->jenis);
+            });
+        }
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->whereHas('mahasiswa', function ($q) use ($search) {
+                $q->where('Nama_Mahasiswa', 'like', "%$search%")
+                    ->orWhere('NIM', 'like', "%$search%")
+                    ->orWhere('Universitas', 'like', "%$search%")
+                    ->orWhere('Jurusan', 'like', "%$search%")
+                ;
+            });
+        }
+        $periodeList = \App\Models\BantuanStudi::distinct()->pluck('Periode_Bantuan')->filter()->values();
+        $jenisList = \App\Models\BantuanStudi::distinct()->pluck('Jenis_Bantuan')->filter()->values();
+        $pengumuman = \App\Models\PengumumanBantuanStudi::first();
+
+        return view('tim.informasi-pemberian', compact('informasiList', 'periodeList', 'jenisList', 'pengumuman'));
+    }
+
     public function show($id)
     {
         $info = InformasiPemberianBantuan::with(['mahasiswa.berkas', 'mahasiswa.korwil', 'bantuanStudi'])->findOrFail($id);

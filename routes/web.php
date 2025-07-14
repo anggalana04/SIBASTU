@@ -106,13 +106,15 @@ Route::middleware('auth')->group(function () {
 
     // Laporan routes for Admin Dinas
     Route::prefix('dinas')->group(function () {
-        Route::view('/dashboard', 'dinas.dashboard')->name('dinas.dashboard');
+        Route::get('/dashboard', [\App\Http\Controllers\DinasController::class, 'dashboard'])->name('dinas.dashboard');
         // Main laporan page for dinas
         Route::view('/laporan', 'dinas.laporan')->name('dinas.laporan');
         // Laporan Pendaftaran
         Route::get('/pendaftaran', [\App\Http\Controllers\LaporanController::class, 'laporanPendaftaran'])->name('laporan.pendaftaran');
+        Route::get('/pendaftaran/export-pdf', [\App\Http\Controllers\LaporanController::class, 'exportPendaftaranPdf'])->name('laporan.pendaftaran.exportPdf');
         // Laporan Pemberian Bantuan
         Route::get('/bantuan', [\App\Http\Controllers\LaporanController::class, 'laporanBantuan'])->name('laporan.bantuan');
+        Route::get('/bantuan/export-pdf', [\App\Http\Controllers\LaporanController::class, 'exportBantuanPdf'])->name('laporan.bantuan.exportPdf');
     });
 
 

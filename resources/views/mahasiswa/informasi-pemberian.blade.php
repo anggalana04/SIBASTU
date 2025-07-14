@@ -2,26 +2,28 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/informasi-pemberian-mhs.css') }}">
     <h1>Informasi Pemberian Bantuan Studi</h1>
-    <form method="GET" action="#" class="informasi-pemberian-form">
+    <form method="GET" action="" class="informasi-pemberian-form">
         <div class="informasi-pemberian-form-row">
             <div>
-                <label class="form-label">Tahun</label>
-                <select name="tahun">
-                    <option value="">2024-2025</option>
-                    <option value="">2025-2026</option>
+                <label class="form-label">Periode Bantuan</label>
+                <select name="periode">
+                    <option value="">-- Pilih Periode --</option>
+                    @foreach($periodeList as $periode)
+                        <option value="{{ $periode }}" @if(request('periode') == $periode) selected @endif>{{ $periode }}</option>
+                    @endforeach
                 </select>
             </div>
             <div>
                 <label class="form-label">Jenis Informasi</label>
                 <select name="jenis">
                     <option value="">-- Pilih Jenis Bantuan --</option>
-                    @php
-                        $jenisList = \App\Models\BantuanStudi::query()->distinct()->pluck('Jenis_Bantuan');
-                    @endphp
                     @foreach($jenisList as $jenis)
-                        <option value="{{ $jenis }}">{{ ucwords(str_replace('_',' ', $jenis)) }}</option>
+                        <option value="{{ $jenis }}" @if(request('jenis') == $jenis) selected @endif>{{ ucwords(str_replace('_',' ', $jenis)) }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div>
+                <input type="text" name="search" placeholder="Cari bantuan/periode..." value="{{ request('search') }}" class="form-control" style="min-width:180px;">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Tampilkan</button>
@@ -43,8 +45,8 @@
                 </tr>
             </thead>
             <tbody>
-                @php $allInformasi = \App\Models\InformasiPemberianBantuan::with(['mahasiswa','bantuanStudi'])->get(); @endphp
-                @forelse($allInformasi as $info)
+                @forelse($informasiList as $info)
+
                 <tr>
                     <td>{{ $info->mahasiswa->Nama_Mahasiswa ?? '-' }}</td>
                     <td>{{ $info->bantuanStudi->Jenis_Bantuan ?? '-' }}</td>

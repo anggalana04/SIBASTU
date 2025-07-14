@@ -3,6 +3,24 @@
 <link rel="stylesheet" href="{{ asset('css/index-berkas.css') }}">
 <h1 class="validasi-title">VALIDASI BERKAS</h1>
 <div class="data-mahasiswa-table-wrapper">
+    <form method="GET" action="" class="informasi-pemberian-form" style="margin-bottom:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;">
+        <div>
+            <label class="form-label">Status Validasi</label>
+            <select name="status" class="form-control" style="min-width:140px;">
+                <option value="">-- Semua Status --</option>
+                <option value="menunggu_verifikasi" @if(request('status')=='menunggu_verifikasi') selected @endif>Menunggu Verifikasi</option>
+                <option value="diverifikasi" @if(request('status')=='diverifikasi') selected @endif>Diverifikasi</option>
+                <option value="ditolak" @if(request('status')=='ditolak') selected @endif>Ditolak</option>
+            </select>
+        </div>
+        <div style="flex:2;min-width:180px;">
+            <label class="form-label">Cari Mahasiswa/Jurusan</label>
+            <input type="text" name="search" class="form-control" value="{{ request('search') }}" placeholder="Nama, NIM, Jurusan...">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Terapkan</button>
+        </div>
+    </form>
     <table class="data-mahasiswa-table">
         <thead>
             <tr>

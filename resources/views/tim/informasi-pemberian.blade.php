@@ -3,6 +3,33 @@
 <link rel="stylesheet" href="{{ asset('css/tim-pengumuman.css') }}">
 <div class="main-content">
     <div class="mt-5">
+        <form method="GET" action="" class="informasi-pemberian-form" style="margin-bottom:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;">
+            <div>
+                <label class="form-label">Periode Bantuan</label>
+                <select name="periode" class="form-control" style="min-width:140px;">
+                    <option value="">-- Semua Periode --</option>
+                    @foreach($periodeList as $periode)
+                        <option value="{{ $periode }}" @if(request('periode') == $periode) selected @endif>{{ $periode }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="form-label">Jenis Bantuan</label>
+                <select name="jenis" class="form-control" style="min-width:140px;">
+                    <option value="">-- Semua Jenis --</option>
+                    @foreach($jenisList as $jenis)
+                        <option value="{{ $jenis }}" @if(request('jenis') == $jenis) selected @endif>{{ ucwords(str_replace('_',' ', $jenis)) }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div style="flex:2;min-width:180px;">
+                <label class="form-label">Cari Mahasiswa/Bantuan</label>
+                <input type="text" name="search" class="form-control" value="{{ request('search') }}" placeholder="Nama, NIM, Universitas, Jurusan...">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Terapkan</button>
+            </div>
+        </form>
         <h2>Daftar Informasi Pemberian Bantuan</h2>
         <table class="table table-striped informasi-table">
             <thead>
@@ -30,8 +57,8 @@
     @endif
 
 
-    <div class="pengumuman-card-container">
-        <h1>Manajemen Pengumuman Bantuan Studi</h1>
+    <div class="pengumuman-card-container" style="max-width:1200px;width:100%;margin:2.5rem auto 0 auto;">
+        <h1 style="font-size:1.5rem;font-weight:700;color:#1a237e;margin-bottom:2rem;padding:0.5rem 1.5rem 0.5rem 0;letter-spacing:0.5px;text-align:center;">Manajemen Pengumuman Bantuan Studi</h1>
         <div class="pengumuman-card">
             <form action="{{ isset($pengumuman) ? route('tim.pengumuman-bantuan-studi.update', $pengumuman->id) : route('tim.pengumuman-bantuan-studi.store') }}" method="POST">
                 @csrf
@@ -72,13 +99,7 @@
                     <button type="submit" class="btn btn-success">Simpan Pengumuman</button>
                 </div>
             </form>
-            @if(isset($pengumuman))
-                <form action="{{ route('tim.pengumuman-bantuan-studi.destroy', $pengumuman->id) }}" method="POST" style="display:inline-block; margin-top: 0.5rem;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus pengumuman?')">Hapus</button>
-                </form>
-            @endif
+           
         </div>
     </div>
 

@@ -14,12 +14,9 @@ class TimLannyJayaCerdasController extends Controller
         // For Tim: aggregate all mahasiswa, not filtered by korwil
         $totalMahasiswa = Mahasiswa::count();
         $mahasiswaMendaftar = Mahasiswa::whereNotNull('created_at')->count();
-        $mahasiswaUploadBerkas = Mahasiswa::whereHas('berkas')->count();
-        $mahasiswaTerverifikasi = Mahasiswa::whereHas('berkas', function ($q) {
-            $q->whereHas('validasi', function ($v) {
-                $v->where('Status_Berkas', 'diverifikasi');
-            });
-        })->count();
+        $mahasiswaUploadBerkas = Mahasiswa::distinct('Id_Mahasiswa')->count('Id_Mahasiswa');
+        // Count unique mahasiswa whose berkas is terverifikasi
+        $mahasiswaTerverifikasi = \App\Models\Validasi::where('Status_Berkas', 'terverifikasi')->distinct('Id_Mahasiswa')->count('Id_Mahasiswa');
         $mahasiswaMenerimaBantuan = Mahasiswa::whereHas('informasiPemberianBantuan', function ($q) {
             $q->where('Status_Bantuan', 'disalurkan');
         })->count();

@@ -9,12 +9,20 @@ class DinasController extends Controller
 {
     public function dashboard()
     {
-        $totalMahasiswa = Mahasiswa::count();
-        $mahasiswaMendaftar = Mahasiswa::whereNotNull('tanggal_pendaftaran')->count();
-        $mahasiswaUploadBerkas = Mahasiswa::whereNotNull('berkas_path')->count();
-        $mahasiswaTerverifikasi = Mahasiswa::where('status_verifikasi', true)->count();
-        $mahasiswaMenerimaBantuan = Mahasiswa::where('status_bantuan', true)->count();
-        $totalDanaTersalurkan = Mahasiswa::where('status_bantuan', true)->sum('jumlah_bantuan');
+        $totalMahasiswa = \App\Models\Mahasiswa::count();
+        $mahasiswaMendaftar = \App\Models\Mahasiswa::whereNotNull('created_at')->count();
+        $mahasiswaUploadBerkas = \App\Models\Berkas::distinct('Id_Mahasiswa')->count('Id_Mahasiswa');
+        // Count unique mahasiswa whose berkas is terverifikasi
+        $mahasiswaTerverifikasi = \App\Models\Validasi::where('Status_Berkas', 'terverifikasi')->distinct('Id_Mahasiswa')->count('Id_Mahasiswa');
+        $mahasiswaMenerimaBantuan = \App\Models\Mahasiswa::whereHas('informasiPemberianBantuan', function ($q) {
+            $q->where('Status_Bantuan', 'disalurkan');
+        })->count();
+        $totalDanaTersalurkan = \App\Models\InformasiPemberianBantuan::where('Status_Bantuan', 'disalurkan')
+            ->with('bantuanStudi')
+            ->get()
+            ->sum(function ($info) {
+                return $info->bantuanStudi->Nominal ?? 0;
+            });
 
         return view('dinas.dashboard', compact(
             'totalMahasiswa',
