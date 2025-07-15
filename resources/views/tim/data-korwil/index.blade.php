@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/data-korwil.css') }}">
-<h1>Manajemen Data Korwil</h1>
+<h1 style="margin-left: 2rem">Manajemen Data Korwil</h1>
 <div class="data-korwil-container">
     <div class="data-korwil-header">
         <a href="{{ route('korwil.create') }}" class="btn btn-primary">Tambah Korwil</a>

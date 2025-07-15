@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/index-data-mahasiswa.css') }}">
-<h1>Manajemen Data Mahasiswa</h1>
+<h1 style="margin-left: 2.3rem">Manajemen Data Mahasiswa</h1>
 <div class="data-mahasiswa-container">
 
     <div class="data-mahasiswa-header">

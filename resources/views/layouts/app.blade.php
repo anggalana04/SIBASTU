@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'SICERDAS') }}</title>
         <link rel="stylesheet" href="/css/app.css">
         <link rel="icon" type="image/png" href="{{ asset('image/Lambang_Kabupaten_Lanny_Jaya__Papua-removebg-preview.png') }}">
     </head>
@@ -13,7 +13,7 @@
         <header class="main-header">
             <div class="app-header" style="display:flex;align-items:center;gap:18px;padding:0 24px;min-height:64px;">
                 <img src="{{ asset('image/Lambang_Kabupaten_Lanny_Jaya__Papua-removebg-preview.png') }}" alt="Logo Lanny Jaya" style="height:48px;width:auto;display:block;">
-                <span class="app-title" style="font-size:2rem;font-weight:700;color:#2563eb;">{{ config('app.name', 'SIBASTU') }}</span>
+                <span class="app-title" style="font-size:2rem;font-weight:700;color:#2563eb;">SICERDAS</span>
             </div>
         </header>
         <div class="container">
