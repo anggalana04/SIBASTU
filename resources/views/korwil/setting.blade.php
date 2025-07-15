@@ -5,7 +5,7 @@
     <h1>Setting Korwil</h1>
     <div class="setting-section">
         <h2>Edit Identitas Korwil</h2>
-        <form action="{{ route('korwil.updateIdentity') }}" method="POST">
+        <form action="" method="POST">
             @csrf
             @method('PUT')
             <label for="name">Nama Korwil:</label>
@@ -25,10 +25,10 @@
 
     <div class="setting-section">
         <h2>Mode Gelap</h2>
-        <form action="{{ route('korwil.toggleDarkMode') }}" method="POST">
+        <form action="" method="POST">
             @csrf
             <label for="dark-mode">Aktifkan Mode Gelap:</label>
-            <input type="checkbox" id="dark-mode" name="dark_mode" {{ $darkMode ? 'checked' : '' }}>
+            <input type="checkbox" id="dark-mode" name="dark_mode" >
 
             <button type="submit" class="btn-save">Simpan</button>
         </form>
