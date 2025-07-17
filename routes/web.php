@@ -102,6 +102,14 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [\App\Http\Controllers\AkunController::class, 'update'])->name('tim.akun.update');
             Route::delete('/{id}', [\App\Http\Controllers\AkunController::class, 'destroy'])->name('tim.akun.destroy');
         });
+
+        // CRUD Bantuan Studi
+        Route::get('/bantuan-studi/create', [\App\Http\Controllers\TimBantuanStudiController::class, 'create'])->name('tim.bantuan-studi.create');
+        Route::post('/bantuan-studi', [\App\Http\Controllers\TimBantuanStudiController::class, 'store'])->name('tim.bantuan-studi.store');
+        Route::get('/bantuan-studi/{id}/edit', [\App\Http\Controllers\TimBantuanStudiController::class, 'edit'])->name('tim.bantuan-studi.edit');
+        Route::put('/bantuan-studi/{id}', [\App\Http\Controllers\TimBantuanStudiController::class, 'update'])->name('tim.bantuan-studi.update');
+        Route::delete('/bantuan-studi/{id}', [\App\Http\Controllers\TimBantuanStudiController::class, 'destroy'])->name('tim.bantuan-studi.destroy');
+        Route::get('/bantuan-studi/{id}', [\App\Http\Controllers\TimBantuanStudiController::class, 'show'])->name('tim.bantuan-studi.show');
     });
 
     // Laporan routes for Admin Dinas

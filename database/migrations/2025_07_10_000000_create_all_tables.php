@@ -69,11 +69,10 @@ return new class extends Migration {
         });
 
 
-
         // 7. Bantuan Studi
         Schema::create('bantuan_studi', function (Blueprint $table) {
             $table->string('Id_Bantuan', 20)->primary();
-            $table->enum('Jenis_Bantuan', ['uang_saku', 'pembiayaan_pendidikan', 'studi_akhir', 'fasilitas_penunjang']);
+            $table->string('Jenis_Bantuan', 100); // Ubah dari enum ke string
             $table->text('Deskripsi')->nullable();
             $table->integer('Nominal');
             $table->string('Periode_Bantuan', 50);

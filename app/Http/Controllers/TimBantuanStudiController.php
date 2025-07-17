@@ -45,4 +45,48 @@ class TimBantuanStudiController extends Controller
         $informasiList = \App\Models\InformasiPemberianBantuan::with(['mahasiswa.korwil'])->get();
         return view('tim.informasi-pemberian', compact('informasiList'));
     }
+
+    public function create()
+    {
+        return view('tim.bantuan-studi.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'Jenis_Bantuan' => 'required',
+            'Nominal' => 'required|numeric',
+        ]);
+        BantuanStudi::create($request->all());
+        return redirect()->route('tim.bantuan-studi')->with('success', 'Bantuan studi berhasil ditambah.');
+    }
+
+    public function edit($id)
+    {
+        $bantuanStudi = BantuanStudi::findOrFail($id);
+        return view('tim.bantuan-studi.edit', compact('bantuanStudi'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'Jenis_Bantuan' => 'required',
+            'Nominal' => 'required|numeric',
+        ]);
+        $bantuanStudi = BantuanStudi::findOrFail($id);
+        $bantuanStudi->update($request->all());
+        return redirect()->route('tim.bantuan-studi')->with('success', 'Bantuan studi berhasil diupdate.');
+    }
+
+    public function destroy($id)
+    {
+        BantuanStudi::destroy($id);
+        return redirect()->route('tim.bantuan-studi')->with('success', 'Bantuan studi berhasil dihapus.');
+    }
+
+    public function show($id)
+    {
+        $bantuanStudi = BantuanStudi::findOrFail($id);
+        return view('tim.bantuan-studi.show', compact('bantuanStudi'));
+    }
 }
